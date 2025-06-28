@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+  <title>Culinary Canvas | Recipe Blog</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: {
+            'xs': '480px',
+          },
+          colors: {
+            'primary': '#f38124',
+            'primary-dark': '#e07015',
+            'light-bg': '#fcfaf8',
+            'card-bg': '#ffffff',
+            'accent': '#f4ede7',
+            'text-dark': '#1c140d',
+            'text-medium': '#9c6f49',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'slide-up': 'slideUp 0.4s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+      background-color: #fcfaf8;
+      color: #1c140d;
+      scroll-behavior: smooth;
+    }
+    
+    .hero-section {
+      background: linear-gradient(135deg, rgba(243,129,36,0.1) 0%, rgba(243,129,36,0.05) 100%);
+    }
+    
+    .recipe-card {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .recipe-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(243, 129, 36, 0.15);
+    }
+    
+    .blog-card {
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .blog-card:hover .blog-image {
+      transform: scale(1.05);
+    }
+    
+    .blog-image {
+      transition: transform 0.5s ease;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background: #f38124;
+      border-radius: 2px;
+    }
+    
+    /* ENHANCED SCROLLABLE CONTAINER */
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 25px;
+      padding: 20px 10px;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #f38124 #f4ede7;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0 20px;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .scroll-container::-webkit-scrollbar {
+      height: 8px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-track {
+      background: #f4ede7;
+      border-radius: 10px;
+      margin: 0 20px;
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #f38124;
+      border-radius: 10px;
+      background-clip: padding-box;
+      border: 2px solid transparent;
+    }
+    
+    .scroll-container::-webkit-scrollbar-thumb:hover {
+      background: #e07015;
+    }
+    
+    .category-tag {
+      transition: all 0.3s ease;
+    }
+    
+    .category-tag:hover {
+      background-color: #f38124;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .author-img {
+      transition: transform 0.3s ease;
+    }
+    
+    .author-img:hover {
+      transform: scale(1.1);
+    }
+    
+    .category-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .category-card:hover {
+      transform: translateY(-10px);
+      background: linear-gradient(135deg, #f38124 0%, #e07015 100%);
+    }
+    
+    .category-card:hover .category-icon {
+      color: white;
+      transform: scale(1.15);
+    }
+    
+    .category-card:hover .category-title {
+      color: white;
+    }
+    
+    .category-icon {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .animated-entry {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .slide-entry {
+      animation: slideUp 0.5s ease-out forwards;
+    }
+    
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    
+    /* ENHANCED READ MORE BUTTON */
+    .read-more-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      background: linear-gradient(to right, #f38124, #e07015);
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      overflow: hidden;
+      z-index: 1;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(243, 129, 36, 0.25);
+    }
+    
+    .read-more-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #e07015, #f38124);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+    
+    .read-more-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(243, 129, 36, 0.35);
+    }
+    
+    .read-more-btn:hover::before {
+      opacity: 1;
+    }
+    
+    .read-more-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(243, 129, 36, 0.25);
+    }
+    
+    .read-more-btn svg {
+      margin-left: 6px;
+      transition: transform 0.3s ease;
+    }
+    
+    .read-more-btn:hover svg {
+      transform: translateX(3px);
+    }
+    
+    .newsletter-section {
+      background: linear-gradient(135deg, rgba(243,129,36,0.08) 0%, rgba(243,129,36,0.04) 100%);
+      border: 2px dashed #f4a261;
+    }
+    
+    .footer-link {
+      position: relative;
+    }
+    
+    .footer-link:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #f38124;
+      transition: width 0.3s ease;
+    }
+    
+    .footer-link:hover:after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+  <div class="relative flex size-full min-h-screen flex-col bg-[#fcfaf8] overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+      <!-- Header -->
+      <header class="flex flex-wrap items-center justify-between px-4 py-3 border-b border-solid border-b-[#f4ede7] sm:px-6 md:px-10 sticky top-0 bg-white z-50 shadow-sm">
+        <div class="flex items-center gap-4 text-[#1c140d]">
+          <div class="size-4">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Culinary Canvas</h2>
+        </div>
+        
+        <div class="flex w-full md:w-auto md:items-center md:gap-8">
+          <div class="hidden md:flex md:flex-row gap-6 py-4 md:py-0">
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Rcp.html">Recipes</a>
+            <a class="text-sm md:text-base font-medium leading-normal text-[#f38124] font-bold" href="Blog.html">Blog</a>
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Seasonal</a>
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Shop</a>
+          </div>
+          <div class="flex items-center gap-2 ml-auto">
+            <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5 hover:bg-[#f38124] hover:text-white transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+              </svg>
+              <span class="hidden md:inline ml-2">Search</span>
+            </button>
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[#f4ede7] hover:border-[#f38124] transition-all" style='background-image: url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80")'></div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Blog Hero Section -->
+      <div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center pt-8 pb-5">
+        <div class="layout-content-container flex flex-col max-w-[960px] flex-1 w-full">
+          <div class="flex flex-col gap-6 text-center px-4 py-8 hero-section rounded-xl mb-10 animated-entry">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-[-0.033em]">
+              Culinary Chronicles
+            </h1>
+            <p class="text-lg text-[#9c6f49] max-w-2xl mx-auto">
+              Discover culinary secrets, cooking techniques, and food stories from our expert chefs and passionate food writers.
+            </p>
+            <div class="flex justify-center gap-3 mt-4">
+              <span class="px-3 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-sm category-tag">Cooking Tips</span>
+              <span class="px-3 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-sm category-tag">Food Science</span>
+              <span class="px-3 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-sm category-tag">Chef Interviews</span>
+            </div>
+          </div>
+
+          <!-- Featured Blog Post -->
+ <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md mb-10 recipe-card animated-entry">
+  <div class="w-full h-64 sm:h-80 md:h-96 bg-center bg-no-repeat bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'></div>
+  <div class="p-6">
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="px-3 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-sm category-tag">Cooking Techniques</span>
+      <span class="px-3 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-sm category-tag">Chef Tips</span>
+      <span class="px-3 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-sm category-tag">Baking</span>
+    </div>
+    <h2 class="text-2xl font-bold mb-3">
+      <a href="subblog.html" class="hover:text-orange-500 transition-colors">The Art of Perfect Sourdough: A Baker's Journey</a>
+    </h2>
+    <p class="text-[#9c6f49] mb-4">
+      Discover the secrets behind creating the perfect sourdough loaf from master baker Elena Rodriguez. Learn about fermentation, hydration levels, and the subtle art of scoring.
+    </p>
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-8 author-img border border-[#f4ede7]" style='background-image: url("https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80")'></div>
+        <span class="text-sm font-medium">Maria Rodriguez</span>
+      </div>
+      <span class="text-sm text-[#9c6f49]">June 12, 2023 • 8 min read</span>
+    </div>
+  </div>
+</div>
+
+          <!-- Latest Blog Posts -->
+          <h2 class="section-title text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 slide-entry">Latest Articles</h2>
+          <div class="scroll-container pb-6 -mx-4 px-4">
+            <!-- Blog Card 1 -->
+            <div class="blog-card flex flex-col w-64 sm:w-72 bg-white rounded-xl shadow-md overflow-hidden slide-entry delay-1">
+              <div class="w-full h-40 bg-center bg-no-repeat bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <div class="flex flex-wrap gap-2 mb-2">
+                  <span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">Healthy Eating</span>
+                </div>
+                <h3 class="font-bold mb-2">5 Superfoods You Should Add to Your Diet</h3>
+                <p class="text-sm text-[#9c6f49] mb-3 flex-1">Discover nutrient-packed foods that boost immunity and energy levels...</p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span class="text-xs text-[#9c6f49]">June 8, 2023</span>
+                  <button class="read-more-btn">
+                    Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Blog Card 2 -->
+            <div class="blog-card flex flex-col w-64 sm:w-72 bg-white rounded-xl shadow-md overflow-hidden slide-entry delay-2">
+              <div class="w-full h-40 bg-center bg-no-repeat bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1510629954389-c1e0da47d414?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <div class="flex flex-wrap gap-2 mb-2">
+                  <span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">Kitchen Tools</span>
+                </div>
+                <h3 class="font-bold mb-2">Essential Knife Skills Every Home Cook Should Master</h3>
+                <p class="text-sm text-[#9c6f49] mb-3 flex-1">Improve your efficiency and safety in the kitchen with these fundamental techniques...</p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span class="text-xs text-[#9c6f49]">June 2, 2023</span>
+                  <button class="read-more-btn">
+                    Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Blog Card 3 -->
+            <div class="blog-card flex flex-col w-64 sm:w-72 bg-white rounded-xl shadow-md overflow-hidden slide-entry delay-3">
+              <div class="w-full h-40 bg-center bg-no-repeat bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <div class="flex flex-wrap gap-2 mb-2">
+                  <span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">Seafood</span>
+                </div>
+                <h3 class="font-bold mb-2">Sustainable Seafood: A Guide to Responsible Choices</h3>
+                <p class="text-sm text-[#9c6f49] mb-3 flex-1">Learn how to make environmentally conscious seafood selections without sacrificing flavor...</p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span class="text-xs text-[#9c6f49]">May 28, 2023</span>
+                  <button class="read-more-btn">
+                    Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Blog Card 4 -->
+            <div class="blog-card flex flex-col w-64 sm:w-72 bg-white rounded-xl shadow-md overflow-hidden slide-entry delay-4">
+              <div class="w-full h-40 bg-center bg-no-repeat bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <div class="flex flex-wrap gap-2 mb-2">
+                  <span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">Meal Prep</span>
+                </div>
+                <h3 class="font-bold mb-2">Weekly Meal Prep Strategies for Busy Professionals</h3>
+                <p class="text-sm text-[#9c6f49] mb-3 flex-1">Save time and eat healthier with these efficient meal preparation techniques...</p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span class="text-xs text-[#9c6f49]">May 22, 2023</span>
+                  <button class="read-more-btn">
+                    Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Blog Card 5 -->
+            <div class="blog-card flex flex-col w-64 sm:w-72 bg-white rounded-xl shadow-md overflow-hidden slide-entry delay-5">
+              <div class="w-full h-40 bg-center bg-no-repeat bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80")'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <div class="flex flex-wrap gap-2 mb-2">
+                  <span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">Desserts</span>
+                </div>
+                <h3 class="font-bold mb-2">Decadent Chocolate Desserts for Special Occasions</h3>
+                <p class="text-sm text-[#9c6f49] mb-3 flex-1">Indulge in these rich chocolate creations that will impress your guests...</p>
+                <div class="flex items-center justify-between mt-auto">
+                  <span class="text-xs text-[#9c6f49]">May 18, 2023</span>
+                  <button class="read-more-btn">
+                    Read More
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- All Blog Posts -->
+          <h2 class="section-title text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-8 slide-entry">All Articles</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+            <!-- Blog Post 1 -->
+            <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden slide-entry delay-1">
+              <div class="flex flex-col md:flex-row">
+                <div class="md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1496412705862-e0088f16f791?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80")'></div>
+                <div class="p-4 md:p-5 flex-1">
+                  <div class="flex flex-wrap gap-2 mb-2">
+                    <span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">Cooking Techniques</span>
+                  </div>
+                  <h3 class="text-lg font-bold mb-2">Mastering the Perfect Pan Sear</h3>
+                  <p class="text-sm text-[#9c6f49] mb-3">Learn how to achieve restaurant-quality sear on meats and vegetables at home with these professional techniques...</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs text-[#9c6f49]">May 15, 2023 • 6 min read</span>
+                    <button class="read-more-btn">
+                      Read More
+                      <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Blog Post 2 -->
+            <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden slide-entry delay-2">
+              <div class="flex flex-col md:flex-row">
+                <div class="md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80")'></div>
+                <div class="p-4 md:p-5 flex-1">
+                  <div class="flex flex-wrap gap-2 mb-2">
+                    <span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">Vegetarian</span>
+                  </div>
+                  <h3 class="text-lg font-bold mb-2">Plant-Based Proteins: Beyond Tofu and Tempeh</h3>
+                  <p class="text-sm text-[#9c6f49] mb-3">Explore innovative plant-based protein sources that add nutrition and flavor to your vegetarian dishes...</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs text-[#9c6f49]">May 10, 2023 • 7 min read</span>
+                    <button class="read-more-btn">
+                      Read More
+                      <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Blog Post 3 -->
+            <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden slide-entry delay-3">
+              <div class="flex flex-col md:flex-row">
+                <div class="md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80")'></div>
+                <div class="p-4 md:p-5 flex-1">
+                  <div class="flex flex-wrap gap-2 mb-2">
+                    <span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">Grilling</span>
+                  </div>
+                  <h3 class="text-lg font-bold mb-2">The Ultimate Guide to Summer Grilling</h3>
+                  <p class="text-sm text-[#9c6f49] mb-3">Everything you need to know to become the grill master of your neighborhood this summer...</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs text-[#9c6f49]">May 5, 2023 • 9 min read</span>
+                    <button class="read-more-btn">
+                      Read More
+                      <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Blog Post 4 -->
+            <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden slide-entry delay-4">
+              <div class="flex flex-col md:flex-row">
+                <div class="md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover blog-image" style='background-image: url("https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80")'></div>
+                <div class="p-4 md:p-5 flex-1">
+                  <div class="flex flex-wrap gap-2 mb-2">
+                    <span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">Desserts</span>
+                  </div>
+                  <h3 class="text-lg font-bold mb-2">The Science of Perfect Pastry</h3>
+                  <p class="text-sm text-[#9c6f49] mb-3">Understanding the chemistry behind flaky, tender pastry for consistently perfect results...</p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs text-[#9c6f49]">April 28, 2023 • 10 min read</span>
+                    <button class="read-more-btn">
+                      Read More
+                      <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Popular Categories -->
+          <h2 class="section-title text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-12 slide-entry">Popular Categories</h2>
+          <div class="flex overflow-x-auto scrollbar-hide pb-4 px-4 -mx-4">
+            <div class="flex gap-4 px-4 min-w-max">
+              <a href="#" class="category-card flex flex-col items-center bg-white rounded-xl shadow-md p-5 min-w-[140px]">
+                <div class="size-14 bg-[#f4ede7] rounded-full flex items-center justify-center text-[#f38124] mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                  </svg>
+                </div>
+                <span class="text-sm font-medium text-center category-title">Cooking Techniques</span>
+              </a>
+              
+              <a href="#" class="category-card flex flex-col items-center bg-white rounded-xl shadow-md p-5 min-w-[140px]">
+                <div class="size-14 bg-[#f4ede7] rounded-full flex items-center justify-center text-[#f38124] mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" />
+                  </svg>
+                </div>
+                <span class="text-sm font-medium text-center category-title">Meal Prep</span>
+              </a>
+              
+              <a href="#" class="category-card flex flex-col items-center bg-white rounded-xl shadow-md p-5 min-w-[140px]">
+                <div class="size-14 bg-[#f4ede7] rounded-full flex items-center justify-center text-[#f38124] mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <span class="text-sm font-medium text-center category-title">Local Cuisine</span>
+              </a>
+              
+              <a href="#" class="category-card flex flex-col items-center bg-white rounded-xl shadow-md p-5 min-w-[140px]">
+                <div class="size-14 bg-[#f4ede7] rounded-full flex items-center justify-center text-[#f38124] mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <span class="text-sm font-medium text-center category-title">Chef Interviews</span>
+              </a>
+              
+              <a href="#" class="category-card flex flex-col items-center bg-white rounded-xl shadow-md p-5 min-w-[140px]">
+                <div class="size-14 bg-[#f4ede7] rounded-full flex items-center justify-center text-[#f38124] mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <span class="text-sm font-medium text-center category-title">Food Science</span>
+              </a>
+              
+              <!-- NEW CATEGORY 1 -->
+              <a href="#" class="category-card flex flex-col items-center bg-white rounded-xl shadow-md p-5 min-w-[140px]">
+                <div class="size-14 bg-[#f4ede7] rounded-full flex items-center justify-center text-[#f38124] mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <span class="text-sm font-medium text-center category-title">Quick Meals</span>
+              </a>
+              
+              <!-- NEW CATEGORY 2 -->
+              <a href="#" class="category-card flex flex-col items-center bg-white rounded-xl shadow-md p-5 min-w-[140px]">
+                <div class="size-14 bg-[#f4ede7] rounded-full flex items-center justify-center text-[#f38124] mb-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <span class="text-sm font-medium text-center category-title">Global Cuisine</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Newsletter Section -->
+          <div class="flex flex-col items-center px-4 py-10 sm:py-16 rounded-xl mx-4 mt-12 newsletter-section slide-entry">
+            <div class="flex flex-col gap-2 text-center max-w-2xl">
+              <h1 class="text-2xl sm:text-3xl font-bold leading-tight tracking-[-0.015em]">
+                Join Our Culinary Community
+              </h1>
+              <p class="text-base font-normal leading-normal">
+                Get exclusive recipes, cooking tips, and blog updates delivered to your inbox
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md mt-6">
+              <input placeholder="Your email address" class="flex-1 h-12 px-4 bg-white text-[#1c140d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f38124] placeholder:text-[#9c6f49] shadow-sm">
+              <button class="flex items-center justify-center h-12 px-6 bg-[#f38124] text-[#1c140d] font-bold rounded-lg whitespace-nowrap hover:bg-[#e07015] transition-colors shadow-md">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="mt-auto bg-[#f4ede7]">
+        <div class="max-w-[960px] mx-auto w-full">
+          <div class="flex flex-col gap-6 px-5 py-10 text-center">
+            <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors footer-link" href="About.html">About Us</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors footer-link" href="Contact.html">Contact</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors footer-link" href="#">Privacy Policy</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors footer-link" href="#">Terms of Service</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors footer-link" href="#">Careers</a>
+            </div>
+            <div class="flex justify-center gap-6">
+              <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                </svg>
+              </a>
+              <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+              <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                </svg>
+              </a>
+              <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                </svg>
+              </a>
+            </div>
+            <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+  <title>Stitch Design</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: {
+            'xs': '480px',
+          },
+          keyframes: {
+            slideLeft: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-100%)' },
+            },
+            slideRight: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(0)' },
+            }
+          },
+          animation: {
+            slideLeft: 'slideLeft 25s linear infinite',
+            slideRight: 'slideRight 25s linear infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .sliding-container {
+      display: flex;
+      width: max-content;
+    }
+  </style>
+</head>
+<body>
+  <div class="relative flex size-full min-h-screen flex-col bg-[#fcfaf8] group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="layout-container flex h-full grow flex-col">
+      <header class="flex flex-wrap items-center justify-between px-4 py-3 border-b border-solid border-b-[#f4ede7] sm:px-6 md:px-10">
+        <div class="flex items-center gap-4 text-[#1c140d]">
+          <div class="size-4">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Culinary Canvas</h2>
+        </div>
+
+        <button class="md:hidden text-[#1c140d] p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <div class="hidden w-full md:flex md:w-auto md:items-center md:gap-8">
+          <div class="flex flex-col md:flex-row gap-4 py-4 md:py-0">
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Rcp.html">Recipes</a>
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Learn/How-to</a>
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Seasonal Sensations</a>
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Blog.html">Blogs</a>
+          </div>
+          <div class="flex items-center gap-2">
+          <a href="login.html" class="flex items-center justify-center h-10 px-4 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-xl whitespace-nowrap min-w-[84px] hover:bg-[#e07015] transition-colors">
+    Subscribe
+</a>
+            <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+              </svg>
+              <span class="hidden md:inline ml-2">Search</span>
+            </button>
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4uvdvlsrW0G9kAzK7wgwQoTzc1Ufn1Z3JJ_5Njpkn1zb_9TKMFXdNPns0mWwrY1iFMU7S_Rw7Vg54uXnschOER95vRhRfqy2vaJCJUBxxLOVEjHrjGxrV-oekCDYPfMce4wINSYoVlFD7u-Mepg2tCL_qmGT6H88eTgCQ8kPcSDqNfyvjawD6YpgGO2dEcbTjHxUHVTfdch4OycM0WEhnl6lT5fVglMICE7yeOeFTmKBMet07plx0DG9HJzsklEAP3o4jekRXCn8");'></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+        <div class="layout-content-container flex flex-col max-w-[960px] flex-1 w-full">
+          <div class="w-full">
+            <div class="min-h-[300px] sm:min-h-[380px] md:min-h-[480px] flex flex-col gap-4 sm:gap-6 bg-cover bg-center bg-no-repeat rounded-xl items-center justify-center p-4 sm:p-6" style='background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDn3bUgqMeJGVpAggKvYkBR7ChuVM6ASK87KE3QMFqkK7HhcquZ1DtjcVLwR4Gn3eMQ9vWhLE67L4-DyqHUcHELD58zzZVkwXEx7uCNSTGd5iIPzil4r55yJOngP7eyjugk0doD_EgtJVJFJ5XyW0psXc1ZgJjlf4OttLLmKhAOZqA1IYz2VgesQnjPXie8gZzL0ESyHNeLCYDWh9H0zs9mz-fKIxDXHtKxF3HPKA1Tn2ebnlW9z9M9LVbSB4tH6auEM_iNInEiyWk");'>
+              <div class="flex flex-col gap-2 text-center max-w-2xl">
+                <h1 class="text-white text-2xl sm:text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">
+                  Discover Your Next Favorite Dish
+                </h1>
+                <h2 class="text-white text-sm sm:text-base font-normal leading-normal">
+                  Explore thousands of recipes, cooking tips, and culinary inspiration to elevate your home cooking.
+                </h2>
+              </div>
+              <a href="Rcp.html" class="flex items-center justify-center h-10 sm:h-12 px-4 sm:px-5 bg-[#f38124] text-[#1c140d] text-sm sm:text-base font-bold rounded-xl min-w-[140px] hover:bg-[#e07015] transition-colors">
+    Explore Recipes
+</a>
+            </div>
+          </div>
+
+          <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-4">Shop by Category</h2>
+          <div class="flex overflow-x-auto scrollbar-hide pb-4">
+            <div class="flex items-stretch p-4 gap-4 sm:gap-6 md:gap-8 min-w-max">
+              <div class="flex flex-col gap-3 text-center min-w-[100px] sm:min-w-[120px]">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-full" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJklOS3IeikfFmpVMhvid86Yu2t8OtYh3A82QEUNWrIY8cMwpYvZ3NTwnMjhV89b-ZtMF_d49S7HFk4LDNI6sU_2P577Q2FzjYZvnaeGZFxKeSNJwCAC4RCNIsc-_On27RdYb6Y_8enPKDcLQpoN-D0TXvk9_xuIqTjdLeqgQNU98HA4WNaZB4Q5RtlF1WAj5se6RAHDh9ZkEe0P-42Cg7z79fyVMXQs5VvriDtpnVI-5ux6H3T0k8rJRvB_k3_LXce9EJ5kbqEmU");'></div>
+                <p class="text-base font-medium leading-normal">Vegetables</p>
+              </div>
+               <div class="flex flex-col gap-3 text-center min-w-[100px] sm:min-w-[120px]">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-full" style='background-image: url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+                <p class="text-base font-medium leading-normal">Pizza</p>
+              </div>
+              <div class="flex flex-col gap-3 text-center min-w-[100px] sm:min-w-[120px]">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-full" style='background-image: url("https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+                <p class="text-base font-medium leading-normal">Salads</p>
+              </div>
+               <div class="flex flex-col gap-3 text-center min-w-[100px] sm:min-w-[120px]">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-full" style='background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+                <p class="text-base font-medium leading-normal">Main Course</p>
+              </div>
+              <div class="flex flex-col gap-3 text-center min-w-[100px] sm:min-w-[120px]">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-full" style='background-image: url("https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=1980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+                <p class="text-base font-medium leading-normal">Breakfast</p>
+              </div>
+              <div class="flex flex-col gap-3 text-center min-w-[100px] sm:min-w-[120px]">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-full" style='background-image: url("https://images.unsplash.com/photo-1551024601-bec78c9445f9?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+                <p class="text-base font-medium leading-normal">Desserts</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="py-8">
+              <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Discover New Flavors</h2>
+              <div class="relative overflow-hidden space-y-4">
+                  <div class="flex animate-slideLeft">
+                      <div class="sliding-container">
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Vibrant Veggie Bowl</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1484723050470-6b6a3b2b8941?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Avocado Toast</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1910&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Gourmet Eggs</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Berry Cake</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Vibrant Veggie Bowl</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1484723050470-6b6a3b2b8941?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Avocado Toast</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1910&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Gourmet Eggs</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Berry Cake</p></div></div></div>
+                      </div>
+                  </div>
+                  <div class="flex animate-slideRight">
+                      <div class="sliding-container">
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Pasta Primavera</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Fresh Tossed Salad</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Grilled Salmon</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Classic Burger</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Pasta Primavera</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Fresh Tossed Salad</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Grilled Salmon</p></div></div></div>
+                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Classic Burger</p></div></div></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+
+          <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Trending Recipes</h2>
+          <div class="space-y-6 px-4">
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md md:flex-row">
+              <div class="w-full md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoHMGb6kDrReUIb2sJHs4ElbN9ZPA4i6szLSeKTJTS7F-bgSdkSqjKxo6KObc67f_OC76Qf__PIz8igzN-cs1QXXUIWdymcj-SvPRfTsqAGlFxCZE6b7yq7aomYdufEx0iYZXYqLKjyGkKmMxJGy7o8tA3ZboefakLyzcNEC_sAr5vDp32QgvswaMK2EfQUs_kYKHmp1Blt7H2F4VZ3dBmITrU07xxntmI4ez8LBy0bMFVy-xE3jAQJPLFz7qO8iRWVz8uF2C77U4");'></div>
+              <div class="p-4 md:p-6 flex-1">
+                <p class="text-lg font-bold leading-tight mb-2">Lemon Herb Roasted Chicken</p>
+                <p class="text-[#9c6f49] mb-3">A classic dish with a zesty twist, perfect for a weeknight dinner.</p>
+                <p class="text-sm text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Chicken, Lemon, Garlic, Rosemary</p>
+                <button class="flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+             <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md md:flex-row">
+              <div class="w-full md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover" style='background-image: url("https://images.unsplash.com/photo-1598515214211-89d3c7373051?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+              <div class="p-4 md:p-6 flex-1">
+                <p class="text-lg font-bold leading-tight mb-2">Spicy Shrimp Tacos</p>
+                <p class="text-[#9c6f49] mb-3">A fiery and flavorful taco recipe that's sure to be a crowd-pleaser.</p>
+                <p class="text-sm text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Shrimp, Tortillas, Cabbage, Lime, Sriracha</p>
+                <button class="flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-6">Recipe Blog</h2>
+          <div class="space-y-6 px-4">
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md md:flex-row">
+              <div class="md:w-1/3 bg-center bg-no-repeat aspect-video bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAmhTZ5YKinLgBWytEW7NVOiKivd20_zbMKq3JmWV7hiVde44LbeEWReeQbUUgG1aVLg1EzNB1ndUNNHVy_Z_h15lH3Wz6KSTdWucTFx4X0VuAN5kAo2AKh0eVqFzqOYL-fAoWH-cz46Xd6H8xkIGEu_rD5LpsSM60uJYmekZ3ivO2toU4fOLiE5cfCPl1aQ9N5MXrSpdKIBXvslzVqbNAXk8meACKIvzNwVDxTYXEPF7Bb9-8q2Dopdmd1Y8xGO10RZ8tIxeDXc1A");'></div>
+              <div class="p-4 md:p-6 flex-1">
+                <p class="text-base font-bold leading-tight mb-2">The Ultimate Guide to Grilling</p>
+                <p class="text-[#9c6f49] mb-4">Learn the best techniques and tips for grilling your favorite foods to perfection.</p>
+                <button class="flex items-center justify-center h-8 px-4 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  Read More
+                </button>
+              </div>
+            </div>
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md md:flex-row">
+              <div class="md:w-1/3 bg-center bg-no-repeat aspect-video bg-cover" style='background-image: url("https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+              <div class="p-4 md:p-6 flex-1">
+                <p class="text-base font-bold leading-tight mb-2">Mastering the Art of Pizza Making</p>
+                <p class="text-[#9c6f49] mb-4">From dough to toppings, we'll guide you through making the perfect pizza at home.</p>
+                <button class="flex items-center justify-center h-8 px-4 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  Read More
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center px-4 py-10 sm:py-16 bg-[#f4ede7] rounded-xl mx-4 mt-8">
+            <div class="flex flex-col gap-2 text-center max-w-2xl">
+              <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-[-0.015em]">
+                Stay Up-to-Date with Our Latest Recipes
+              </h1>
+              <p class="text-base font-normal leading-normal">
+                Sign up for our newsletter and receive exclusive recipes, cooking tips, and special offers.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md mt-6">
+              <input placeholder="Your email address" class="flex-1 h-12 px-4 bg-white text-[#1c140d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f38124] placeholder:text-[#9c6f49]">
+              <button class="flex items-center justify-center h-12 px-6 bg-[#f38124] text-[#1c140d] font-bold rounded-lg whitespace-nowrap hover:bg-[#e07015] transition-colors">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-auto">
+        <div class="max-w-[960px] mx-auto w-full">
+          <div class="flex flex-col gap-6 px-5 py-10 text-center">
+            <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="About.html">About Us</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="Contact.html">Contact</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Privacy Policy</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Terms of Service</a>
+            </div>
+            <div class="flex justify-center gap-6">
+              </div>
+            <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Playfair+Display:wght@400;600;700&display=swap">
+  <title>The Art of Perfect Sourdough | Culinary Canvas</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: {
+            'xs': '480px',
+          },
+          colors: {
+            'primary': '#f38124',
+            'primary-dark': '#e07015',
+            'light-bg': '#fcfaf8',
+            'card-bg': '#ffffff',
+            'accent': '#f4ede7',
+            'text-dark': '#1c140d',
+            'text-medium': '#9c6f49',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-in-out',
+            'slide-up': 'slideUp 0.4s ease-out'
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' }
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+      background-color: #fcfaf8;
+      color: #1c140d;
+      scroll-behavior: smooth;
+    }
+    
+    .blog-header {
+      background: linear-gradient(135deg, rgba(243,129,36,0.1) 0%, rgba(243,129,36,0.05) 100%);
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background: #f38124;
+      border-radius: 2px;
+    }
+    
+    .category-tag {
+      transition: all 0.3s ease;
+    }
+    
+    .category-tag:hover {
+      background-color: #f38124;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .author-img {
+      transition: transform 0.3s ease;
+    }
+    
+    .author-img:hover {
+      transform: scale(1.1);
+    }
+    
+    .ingredient-card {
+      background: linear-gradient(135deg, rgba(243,129,36,0.08) 0%, rgba(243,129,36,0.04) 100%);
+      border-left: 4px solid #f38124;
+    }
+    
+    .step-number {
+      background: linear-gradient(135deg, #f38124 0%, #e07015 100%);
+      color: white;
+    }
+    
+    .content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      color: #1c140d;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+    
+    .content h3:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background: #f38124;
+      border-radius: 50%;
+    }
+    
+    .related-card {
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .related-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .share-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .share-btn:hover {
+      transform: translateY(-3px);
+      background-color: #f4ede7;
+    }
+    
+    .back-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .back-btn:hover {
+      background: #f38124;
+      color: white;
+    }
+    
+    .content img {
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(243,129,36,0.08) 0%, rgba(243,129,36,0.04) 100%);
+      border-left: 4px solid #f38124;
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden">
+  <!-- Header -->
+  <header class="flex flex-wrap items-center justify-between px-4 py-3 border-b border-solid border-b-[#f4ede7] sm:px-6 md:px-10 sticky top-0 bg-white z-50 shadow-sm">
+    <div class="flex items-center gap-4 text-[#1c140d]">
+      <div class="size-4">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+        </svg>
+      </div>
+      <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Culinary Canvas</h2>
+    </div>
+    
+    <div class="flex w-full md:w-auto md:items-center md:gap-8">
+      <div class="hidden md:flex md:flex-row gap-6 py-4 md:py-0">
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Rcp.html">Recipes</a>
+        <a class="text-sm md:text-base font-medium leading-normal text-[#f38124] font-bold" href="Blog.html">Blog</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Seasonal</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Shop</a>
+      </div>
+      <div class="flex items-center gap-2 ml-auto">
+        <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5 hover:bg-[#f38124] hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+          </svg>
+          <span class="hidden md:inline ml-2">Search</span>
+        </button>
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[#f4ede7] hover:border-[#f38124] transition-all" style='background-image: url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80")'></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Blog Content -->
+  <div class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+    <!-- Back Button -->
+    <div class="mb-6">
+      <a href="Blog.html" class="back-btn inline-flex items-center text-[#9c6f49] font-medium px-4 py-2 rounded-lg hover:bg-orange-500 hover:text-white transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Blog
+      </a>
+    </div>
+    
+    <!-- Blog Header -->
+    <div class="blog-header rounded-xl p-6 mb-8">
+      <div class="flex flex-wrap gap-3 mb-4">
+        <span class="category-tag px-3 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-sm">Baking</span>
+        <span class="category-tag px-3 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-sm">Sourdough</span>
+        <span class="category-tag px-3 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-sm">Artisan Bread</span>
+      </div>
+      <h1 class="section-title text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+        The Art of Perfect Sourdough: A Baker's Journey
+      </h1>
+      <div class="flex flex-wrap items-center gap-4 text-[#9c6f49]">
+        <div class="flex items-center gap-3">
+          <div class="author-img bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-[#f4ede7]" style='background-image: url("https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80")'></div>
+          <span class="text-sm font-medium">Maria Rodriguez</span>
+        </div>
+        <span>•</span>
+        <span class="text-sm">June 12, 2023</span>
+        <span>•</span>
+        <span class="text-sm">8 min read</span>
+      </div>
+    </div>
+    
+    <!-- Featured Image -->
+    <div class="w-full h-64 md:h-96 bg-center bg-no-repeat bg-cover rounded-xl mb-8" style='background-image: url("https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80")'></div>
+    
+    <!-- Social Sharing -->
+    <div class="flex flex-wrap items-center gap-4 mb-8 py-3 border-y border-[#f4ede7]">
+      <span class="text-[#9c6f49] font-medium">Share this article:</span>
+      <div class="flex gap-2">
+        <a href="#" class="share-btn flex items-center justify-center size-10 bg-[#f4ede7] rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#9c6f49]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+          </svg>
+        </a>
+        <a href="#" class="share-btn flex items-center justify-center size-10 bg-[#f4ede7] rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#9c6f49]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4z"/>
+          </svg>
+        </a>
+        <a href="#" class="share-btn flex items-center justify-center size-10 bg-[#f4ede7] rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#9c6f49]" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Blog Content -->
+    <div class="content text-[#1c140d] mb-12">
+      <p class="text-lg font-medium mb-8">
+        There's something magical about the process of creating sourdough bread. It's not just baking; it's a journey of patience, intuition, and connection with living ingredients. For master baker Elena Rodriguez, sourdough is more than bread—it's a living art form that connects us to generations of bakers who came before.
+      </p>
+      
+      <div class="flex flex-col md:flex-row gap-8 mb-8">
+        <div class="md:w-1/2">
+          <h2 class="section-title text-2xl font-bold mb-4">The Soul of Sourdough</h2>
+          <p>At the heart of every great sourdough loaf is the starter—a living ecosystem of wild yeast and bacteria. Unlike commercial yeast, a sourdough starter captures the unique microorganisms present in your environment, giving your bread a flavor signature that can't be replicated.</p>
+          <p class="mt-4">"Your starter is like a pet," Elena explains. "It needs regular feeding, the right temperature, and attention. But what you get in return is a living ingredient that transforms simple flour and water into something extraordinary."</p>
+        </div>
+        <div class="md:w-1/2">
+          <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-xl" style='background-image: url("https://images.unsplash.com/photo-1608190003443-86b2638f10bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80")'></div>
+        </div>
+      </div>
+      
+      <div class="tip-box p-6 rounded-lg mb-8">
+        <div class="flex items-start gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#f38124] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div>
+            <p class="font-bold text-[#1c140d]">Pro Tip:</p>
+            <p>Maintain your starter at room temperature if baking daily, or refrigerate and feed weekly for occasional baking. Always use filtered water to avoid chlorine that can harm your starter's microorganisms.</p>
+          </div>
+        </div>
+      </div>
+      
+      <h2 class="section-title text-2xl font-bold mb-6">The Four Pillars of Perfect Sourdough</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="p-6 bg-white rounded-xl shadow-sm">
+          <h3 class="font-bold text-xl mb-3 flex items-center">
+            <span class="step-number flex items-center justify-center size-8 rounded-full mr-3">1</span>
+            Fermentation
+          </h3>
+          <p>The longer fermentation time (typically 12-24 hours) allows enzymes to break down complex carbohydrates, making the bread more digestible and developing complex flavors.</p>
+        </div>
+        
+        <div class="p-6 bg-white rounded-xl shadow-sm">
+          <h3 class="font-bold text-xl mb-3 flex items-center">
+            <span class="step-number flex items-center justify-center size-8 rounded-full mr-3">2</span>
+            Hydration
+          </h3>
+          <p>Hydration level (water-to-flour ratio) determines your dough's texture. Higher hydration (75-85%) creates an open crumb and crisp crust, while lower hydration (65-75%) yields a denser, easier-to-handle loaf.</p>
+        </div>
+        
+        <div class="p-6 bg-white rounded-xl shadow-sm">
+          <h3 class="font-bold text-xl mb-3 flex items-center">
+            <span class="step-number flex items-center justify-center size-8 rounded-full mr-3">3</span>
+            Folding Technique
+          </h3>
+          <p>Instead of traditional kneading, sourdough relies on a series of folds during the bulk fermentation. This develops gluten structure while preserving gas bubbles for that iconic open crumb.</p>
+        </div>
+        
+        <div class="p-6 bg-white rounded-xl shadow-sm">
+          <h3 class="font-bold text-xl mb-3 flex items-center">
+            <span class="step-number flex items-center justify-center size-8 rounded-full mr-3">4</span>
+            The Bake
+          </h3>
+          <p>Steam is crucial during the first 20 minutes of baking to allow maximum oven spring. A Dutch oven or baking stone helps create the ideal steamy environment for crust development.</p>
+        </div>
+      </div>
+      
+      <div class="bg-center bg-no-repeat aspect-video bg-cover rounded-xl mb-8" style='background-image: url("https://images.unsplash.com/photo-1540661116512-12d2f6d13f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'></div>
+      
+      <h2 class="section-title text-2xl font-bold mb-4">Elena's Signature Sourdough Recipe</h2>
+      
+      <div class="flex flex-col md:flex-row gap-8 mb-8">
+        <div class="md:w-1/3">
+          <div class="ingredient-card p-6 rounded-lg sticky top-24">
+            <h3 class="font-bold text-xl mb-4">Ingredients</h3>
+            <ul class="space-y-2">
+              <li class="flex justify-between">
+                <span>Bread flour</span>
+                <span class="font-medium">500g</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Water (80°F)</span>
+                <span class="font-medium">350g</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Active sourdough starter</span>
+                <span class="font-medium">100g</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Sea salt</span>
+                <span class="font-medium">10g</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Rice flour (for dusting)</span>
+                <span class="font-medium">As needed</span>
+              </li>
+            </ul>
+            <div class="mt-6">
+              <h4 class="font-bold mb-2">Equipment</h4>
+              <ul class="list-disc pl-5 space-y-1">
+                <li>Dutch oven</li>
+                <li>Banneton proofing basket</li>
+                <li>Dough scraper</li>
+                <li>Lame or razor blade</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="md:w-2/3">
+          <h3 class="font-bold text-xl mb-4">Method</h3>
+          
+          <div class="space-y-6">
+            <div>
+              <h4 class="font-bold text-lg mb-2">1. Autolyse (60 minutes)</h4>
+              <p>Mix flour and 320g water until no dry flour remains. Cover and let rest. This allows flour to fully hydrate and gluten to begin developing.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-bold text-lg mb-2">2. Mixing (5 minutes)</h4>
+              <p>Add starter and salt with remaining 30g water. Mix until incorporated. The dough will be shaggy and sticky.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-bold text-lg mb-2">3. Bulk Fermentation (4-5 hours)</h4>
+              <p>Perform 4 sets of stretch and folds at 30-minute intervals. After final fold, let dough rest until increased 50% in volume.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-bold text-lg mb-2">4. Shaping & Proofing (12-16 hours)</h4>
+              <p>Shape dough into tight boule, place seam-up in floured banneton. Cover and refrigerate overnight.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-bold text-lg mb-2">5. Baking (45-50 minutes)</h4>
+              <p>Preheat Dutch oven at 500°F for 45 minutes. Score dough, place in Dutch oven, cover and bake 20 minutes. Remove lid, reduce to 450°F, bake 25-30 minutes until deep golden brown.</p>
+            </div>
+            
+            <div>
+              <h4 class="font-bold text-lg mb-2">6. Cooling (2+ hours)</h4>
+              <p>Transfer to wire rack. Resist cutting until completely cool to allow crumb structure to set.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-center bg-no-repeat aspect-video bg-cover rounded-xl mb-8" style='background-image: url("https://images.unsplash.com/photo-1608190003443-86b2638f10bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'></div>
+      
+      <h2 class="section-title text-2xl font-bold mb-4">Troubleshooting Common Issues</h2>
+      
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="bg-[#f4ede7]">
+              <th class="text-left p-3 border-b border-[#e0d6c9]">Issue</th>
+              <th class="text-left p-3 border-b border-[#e0d6c9]">Likely Cause</th>
+              <th class="text-left p-3 border-b border-[#e0d6c9]">Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-[#f4ede7]">
+              <td class="p-3 font-medium">Dense crumb</td>
+              <td class="p-3">Underproofed dough</td>
+              <td class="p-3">Extend bulk fermentation time</td>
+            </tr>
+            <tr class="border-b border-[#f4ede7]">
+              <td class="p-3 font-medium">Flat loaf</td>
+              <td class="p-3">Overproofed dough</td>
+              <td class="p-3">Shorten proofing time, cooler temp</td>
+            </tr>
+            <tr class="border-b border-[#f4ede7]">
+              <td class="p-3 font-medium">Pale crust</td>
+              <td class="p-3">Oven too cool, insufficient steam</td>
+              <td class="p-3">Increase oven temp, ensure Dutch oven seal</td>
+            </tr>
+            <tr class="border-b border-[#f4ede7]">
+              <td class="p-3 font-medium">Sour flavor too strong</td>
+              <td class="p-3">Long cold proof, acidic starter</td>
+              <td class="p-3">Shorten cold proof, feed starter more frequently</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="text-center py-8">
+        <p class="text-xl italic max-w-2xl mx-auto mb-6">
+          "Sourdough teaches patience and presence. Each loaf tells the story of its environment, ingredients, and the baker's hands. It's never just bread—it's a living creation."
+        </p>
+        <p class="font-bold">- Elena Rodriguez, Master Baker</p>
+      </div>
+    </div>
+    
+    <!-- Related Articles -->
+    <h2 class="section-title text-2xl font-bold mb-6">You Might Also Like</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <a href="#" class="related-card block bg-white rounded-xl overflow-hidden">
+        <div class="w-full h-40 bg-center bg-no-repeat bg-cover" style='background-image: url("https://images.unsplash.com/photo-1603083059990-0aa34ae0a7e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80")'></div>
+        <div class="p-4">
+          <h3 class="font-bold mb-2">The Science of Gluten Development</h3>
+          <p class="text-sm text-[#9c6f49]">Understanding protein structures for perfect dough</p>
+        </div>
+      </a>
+      
+      <a href="#" class="related-card block bg-white rounded-xl overflow-hidden">
+        <div class="w-full h-40 bg-center bg-no-repeat bg-cover" style='background-image: url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80")'></div>
+        <div class="p-4">
+          <h3 class="font-bold mb-2">Artisan Pizza Dough Techniques</h3>
+          <p class="text-sm text-[#9c6f49]">From Neapolitan to Detroit-style crusts</p>
+        </div>
+      </a>
+      
+      <a href="#" class="related-card block bg-white rounded-xl overflow-hidden">
+        <div class="w-full h-40 bg-center bg-no-repeat bg-cover" style='background-image: url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80")'></div>
+        <div class="p-4">
+          <h3 class="font-bold mb-2">Ancient Grains for Modern Baking</h3>
+          <p class="text-sm text-[#9c6f49]">Incorporating spelt, einkorn, and emmer</p>
+        </div>
+      </a>
+    </div>
+    
+    <!-- Newsletter -->
+    <div class="bg-[#f4ede7] rounded-xl p-8 text-center mb-12">
+      <h2 class="text-2xl font-bold mb-3">Join Our Baking Community</h2>
+      <p class="text-[#9c6f49] max-w-lg mx-auto mb-6">Get weekly recipes, baking tips, and exclusive content delivered to your inbox</p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input placeholder="Your email address" class="flex-1 h-12 px-4 bg-white text-[#1c140d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f38124] placeholder:text-[#9c6f49]">
+        <button class="h-12 px-6 bg-[#f38124] text-[#1c140d] font-bold rounded-lg whitespace-nowrap hover:bg-[#e07015] transition-colors">
+          Subscribe
+        </button>
+      </div>
+    </div>
+    
+    <!-- Comments Section -->
+    <div class="mb-12">
+      <h2 class="section-title text-2xl font-bold mb-6">Join the Conversation</h2>
+      <div class="bg-white rounded-xl p-6 mb-6">
+        <div class="flex items-start gap-4 mb-6">
+          <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" style='background-image: url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80")'></div>
+          <div class="flex-1">
+            <textarea placeholder="Add your comment..." class="w-full h-24 p-4 border border-[#f4ede7] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f38124]"></textarea>
+            <button class="mt-3 px-6 py-2 bg-[#f38124] text-white font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+              Post Comment
+            </button>
+          </div>
+        </div>
+        
+        <div class="border-t border-[#f4ede7] pt-6">
+          <div class="flex items-start gap-4 mb-6">
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" style='background-image: url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80")'></div>
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="font-bold">Michael Baker</span>
+                <span class="text-sm text-[#9c6f49]">June 14, 2023</span>
+              </div>
+              <p>This recipe transformed my sourdough! I've been struggling with dense loaves for months. Following your fermentation timing made all the difference. Thank you!</p>
+            </div>
+          </div>
+          
+          <div class="flex items-start gap-4">
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12" style='background-image: url("https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80")'></div>
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="font-bold">Sarah Dough</span>
+                <span class="text-sm text-[#9c6f49]">June 13, 2023</span>
+              </div>
+              <p>Your tip about the water temperature was a game-changer. My starter is now more active than ever. Any suggestions for whole grain variations?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-auto bg-[#f4ede7]">
+    <div class="max-w-6xl mx-auto w-full">
+      <div class="flex flex-col gap-6 px-5 py-10 text-center">
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="About.html">About Us</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="Contact.html">Contact</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Privacy Policy</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Terms of Service</a>
+        </div>
+        <div class="flex justify-center gap-6">
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+          </a>
+        </div>
+        <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

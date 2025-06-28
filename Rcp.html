@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes - Culinary Canvas</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    @layer utilities {
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .recipe-card {
+        transition: all 0.3s ease;
+      }
+      .recipe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+      .category-header {
+        position: relative;
+      }
+      .category-header::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #f38124;
+        border-radius: 2px;
+      }
+      .bookmark-icon {
+        transition: all 0.2s ease;
+      }
+      .bookmark-icon:hover {
+        color: #f38124;
+        transform: scale(1.1);
+      }
+      .scroll-btn {
+        display: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 10;
+        cursor: pointer;
+      }
+      .scroll-container:hover .scroll-btn {
+        display: flex;
+      }
+      .scroll-left {
+        left: 10px;
+      }
+      .scroll-right {
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#fcfaf8]" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+  <!-- Header -->
+  <header class="flex flex-wrap items-center justify-between px-4 py-3 border-b border-solid border-b-[#f4ede7] sm:px-6 md:px-10">
+    <div class="flex items-center gap-4 text-[#1c140d]" href="Sample.html">
+      <div class="size-4">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+        </svg>
+      </div>
+      <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]" >Culinary Canvas</h2>
+    </div>
+    
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden text-[#1c140d] p-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+    
+    <!-- Desktop Navigation -->
+    <div class="hidden w-full md:flex md:w-auto md:items-center md:gap-8">
+      <div class="flex flex-col md:flex-row gap-4 py-4 md:py-0">
+        <a class="text-sm md:text-base font-medium leading-normal text-[#f38124] border-b-2 border-[#f38124]" href="#">Recipes</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Learn/How-to</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Seasonal Sensations</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Shop</a>
+      </div>
+      <div class="flex items-center gap-2 md:gap-4">
+       <a href="login.html" class="flex items-center justify-center h-10 px-4 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-xl whitespace-nowrap min-w-[84px] hover:bg-[#e07015] transition-colors">
+    Subscribe
+</a>
+        <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+          </svg>
+          <span class="hidden md:inline ml-2">Search</span>
+        </button>
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4uvdvlsrW0G9kAzK7wgwQoTzc1Ufn1Z3JJ_5Njpkn1zb_9TKMFXdNPns0mWwrY1iFMU7S_Rw7Vg54uXnschOER95vRhRfqy2vaJCJUBxxLOVEjHrjGxrV-oekCDYPfMce4wINSYoVlFD7u-Mepg2tCL_qmGT6H88eTgCQ8kPcSDqNfyvjawD6YpgGO2dEcbTjHxUHVTfdch4OycM0WEhnl6lT5fVglMICE7yeOeFTmKBMet07plx0DG9HJzsklEAP3o4jekRXCn8");'></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="px-4 md:px-10 lg:px-20 xl:px-40 py-8">
+    <div class="max-w-[960px] mx-auto">
+      <h1 class="text-2xl md:text-3xl font-bold text-[#1c140d] mb-8">Discover Delicious Recipes</h1>
+      
+      <!-- Classic Indian Section -->
+      <section class="mb-12">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">Classic Indian</h2>
+          <a href="#" class="text-sm text-[#f38124] font-medium hover:underline">View All</a>
+        </div>
+        
+        <div class="relative scroll-container">
+          <div class="flex overflow-x-auto scrollbar-hide pb-4 gap-4 md:gap-6 recipe-scroll">
+            <!-- Recipe Card 1 -->
+           <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+  <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+  <div class="p-4">
+    <div class="flex justify-between items-start mb-2">
+      <h3 class="font-bold text-[#1c140d]">Rajma Chawal</h3>
+      <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+    </div>
+    <p class="text-xs text-[#9c6f49] mb-3">Kidney beans curry served with steamed rice</p>
+    <a href="subrcp.html" class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors text-center block">
+      View Recipe
+    </a>
+  </div>
+</div>
+            
+            <!-- Recipe Card 2 -->
+        <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+    <div class="relative bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1606491956689-2ea866880c84?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+        <button class="absolute top-3 right-3 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md bookmark-toggle" data-id="Chole Bhature">
+            <i class="far fa-bookmark text-xl text-[#9c6f49]"></i>
+        </button>
+    </div>
+    <div class="p-4">
+        <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold text-[#1c140d]">Chole Bhature</h3>
+            </div>
+        <p class="text-xs text-[#9c6f49] mb-3">Spicy chickpeas with fried bread</p>
+        <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+            View Recipe
+        </button>
+    </div>
+</div>
+            
+            <!-- Recipe Card 3 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Paneer Butter Masala</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Cottage cheese in rich tomato gravy</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 4 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1580064003296-29deb3521370?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Aloo Paratha</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Stuffed potato flatbread</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="scroll-btn scroll-left hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-left text-[#f38124]"></i>
+          </div>
+          <div class="scroll-btn scroll-right hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-right text-[#f38124]"></i>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Pure Protein Section -->
+      <section class="mb-12">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">Pure Protein</h2>
+          <a href="#" class="text-sm text-[#f38124] font-medium hover:underline">View All</a>
+        </div>
+        
+        <div class="relative scroll-container">
+          <div class="flex overflow-x-auto scrollbar-hide pb-4 gap-4 md:gap-6 recipe-scroll">
+            <!-- Recipe Card 1 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1532550907401-a500c9a57435?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Classic Lemon Chicken</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Tangy grilled chicken with herbs</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 2 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Grilled Tofu Salad</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Fresh greens with marinated tofu</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 3 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1570696516188-ade861b84a49?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Protein Smoothie</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Banana, berries, and protein powder</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 4 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://lh3.googleusercontent.com/Z0AefbQ6M_6HmrBLlRSV4XLRChXTKv_nB7C-gJAgo2auyb1P4QkAJOFco54KOR1iXukHSXijAp9e6_DgLyd8QyLcCLEPW6wnOA=s750');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Boiled Egg Chaat</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Spicy Indian-style egg snack</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="scroll-btn scroll-left hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-left text-[#f38124]"></i>
+          </div>
+          <div class="scroll-btn scroll-right hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-right text-[#f38124]"></i>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Vegan Only Section -->
+      <section class="mb-12">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">Vegan Only</h2>
+          <a href="#" class="text-sm text-[#f38124] font-medium hover:underline">View All</a>
+        </div>
+        
+        <div class="relative scroll-container">
+          <div class="flex overflow-x-auto scrollbar-hide pb-4 gap-4 md:gap-6 recipe-scroll">
+            <!-- Recipe Card 1 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Vegan Dal Tadka</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Lentil curry with tempered spices</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 2 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Quinoa Veg Bowl</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Superfood grains with roasted veggies</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 3 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1606491956689-2ea866880c84?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Stuffed Capsicum</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Bell peppers filled with spiced potatoes</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 4 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Coconut Curry</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Creamy vegetable curry with coconut milk</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="scroll-btn scroll-left hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-left text-[#f38124]"></i>
+          </div>
+          <div class="scroll-btn scroll-right hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-right text-[#f38124]"></i>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Continental Section -->
+      <section class="mb-12">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">Continental</h2>
+          <a href="#" class="text-sm text-[#f38124] font-medium hover:underline">View All</a>
+        </div>
+        
+        <div class="relative scroll-container">
+          <div class="flex overflow-x-auto scrollbar-hide pb-4 gap-4 md:gap-6 recipe-scroll">
+            <!-- Recipe Card 1 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1598866594230-a7c12756260f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Pasta Alfredo</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Creamy fettuccine with parmesan</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 2 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1550317138-10000687a72b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Grilled Chicken Sandwich</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Herb-marinated chicken with fresh veggies</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 3 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Veggie Pizza</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Thin crust with fresh seasonal toppings</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 4 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Tomato Basil Soup</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Creamy tomato soup with fresh basil</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="scroll-btn scroll-left hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-left text-[#f38124]"></i>
+          </div>
+          <div class="scroll-btn scroll-right hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-right text-[#f38124]"></i>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Low-Carb Bites Section -->
+      <section class="mb-12">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">Low-Carb Bites</h2>
+          <a href="#" class="text-sm text-[#f38124] font-medium hover:underline">View All</a>
+        </div>
+        
+        <div class="relative scroll-container">
+          <div class="flex overflow-x-auto scrollbar-hide pb-4 gap-4 md:gap-6 recipe-scroll">
+            <!-- Recipe Card 1 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://plus.unsplash.com/premium_photo-1663843332694-2c1a841bfa09?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Zucchini Noodles</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Spiralized zucchini with pesto sauce</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+ <!-- Recipe Card n -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://www.archanaskitchen.com/images/archanaskitchen/1-Author/Soni_Khadilkar/grilled_chicken_salad_1600.jpg');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Chicken Salad</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Spiralized zucchini with pesto sauce</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+             <!-- Recipe Card n -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://www.healthline.com/nutrition/healthy-low-carb-meals#chicken-noodle-souphttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTMvoZ47VhcvGb8hLL8rNCllqjwu_gXf0SiQ&s');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Instant Pot Chicken</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Spiralized zucchini with pesto sauce</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 2 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1510693206972-df098062cb71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Egg Muffins</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Baked eggs with veggies in muffin cups</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 3 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1606755962773-d324e0a13086?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Cauliflower Fried Rice</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Low-carb alternative to fried rice</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe Card 4 -->
+            <div class="recipe-card flex-shrink-0 w-48 md:w-56 bg-white rounded-xl shadow-md overflow-hidden">
+              <div class="bg-center bg-no-repeat bg-cover w-full h-32 md:h-40" style="background-image: url('https://images.unsplash.com/photo-1606755456206-b25206cde27e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+              <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="font-bold text-[#1c140d]">Tuna Lettuce Wraps</h3>
+                  <i class="far fa-bookmark text-[#9c6f49] bookmark-icon"></i>
+                </div>
+                <p class="text-xs text-[#9c6f49] mb-3">Fresh tuna salad in crisp lettuce cups</p>
+                <button class="w-full py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="scroll-btn scroll-left hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-left text-[#f38124]"></i>
+          </div>
+          <div class="scroll-btn scroll-right hidden md:flex items-center justify-center">
+            <i class="fas fa-chevron-right text-[#f38124]"></i>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto">
+    <div class="max-w-[960px] mx-auto w-full">
+      <div class="flex flex-col gap-6 px-5 py-10 text-center">
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="About.html">About Us</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Contact</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Privacy Policy</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Terms of Service</a>
+        </div>
+        <div class="flex justify-center gap-6">
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-pinterest text-xl"></i>
+          </a>
+        </div>
+        <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Add scroll functionality to recipe sections
+    document.querySelectorAll('.scroll-container').forEach(container => {
+      const scrollLeftBtn = container.querySelector('.scroll-left');
+      const scrollRightBtn = container.querySelector('.scroll-right');
+      const scrollContainer = container.querySelector('.recipe-scroll');
+      
+      scrollLeftBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+      
+      scrollRightBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+      
+      // Enable drag scrolling
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      
+      scrollContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - scrollContainer.offsetLeft;
+        scrollLeft = scrollContainer.scrollLeft;
+      });
+      
+      scrollContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+      });
+      
+      scrollContainer.addEventListener('mouseup', () => {
+        isDown = false;
+      });
+      
+      scrollContainer.addEventListener('mousemove', (e) => {
+        if(!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - scrollContainer.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed
+        scrollContainer.scrollLeft = scrollLeft - walk;
+      });
+      
+      // Touch events for mobile
+      scrollContainer.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - scrollContainer.offsetLeft;
+        scrollLeft = scrollContainer.scrollLeft;
+      });
+      
+      scrollContainer.addEventListener('touchend', () => {
+        isDown = false;
+      });
+      
+      scrollContainer.addEventListener('touchmove', (e) => {
+        if(!isDown) return;
+        const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+        const walk = (x - startX) * 2;
+        scrollContainer.scrollLeft = scrollLeft - walk;
+      });
+    });
+    
+    // Bookmark functionality
+    document.querySelectorAll('.bookmark-icon').forEach(icon => {
+      icon.addEventListener('click', function() {
+        if(this.classList.contains('far')) {
+          this.classList.remove('far');
+          this.classList.add('fas', 'text-[#f38124]');
+        } else {
+          this.classList.remove('fas', 'text-[#f38124]');
+          this.classList.add('far');
+        }
+      });
+    });
+  </script><script src="js/bookmark.js"></script> <script src="js/main.js"></script>
+</body>
+</html>

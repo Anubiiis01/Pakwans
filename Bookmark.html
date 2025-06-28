@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Saved Recipes - Culinary Canvas</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    @layer utilities {
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .recipe-card {
+        transition: all 0.3s ease;
+      }
+      .recipe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+      .category-header {
+        position: relative;
+      }
+      .category-header::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #f38124;
+        border-radius: 2px;
+      }
+      .bookmark-icon {
+        transition: all 0.2s ease;
+      }
+      .bookmark-icon:hover {
+        color: #f38124;
+        transform: scale(1.1);
+      }
+      .bookmark-active {
+        color: #f38124;
+      }
+      .bookmark-tag {
+        transition: all 0.2s ease;
+      }
+      .bookmark-tag:hover {
+        background-color: #f38124;
+        color: white;
+      }
+      .bookmark-tag.active {
+        background-color: #f38124;
+        color: white;
+      }
+      .empty-bookmarks {
+        background-image: linear-gradient(to bottom right, rgba(252,250,248,0.9), rgba(252,250,248,0.9)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23f4ede7' d='M50,10 C70.986,10 88,27.014 88,48 C88,68.986 70.986,86 50,86 C29.014,86 12,68.986 12,48 C12,27.014 29.014,10 50,10 Z'/%3E%3C/svg%3E");
+        background-size: 120px;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#fcfaf8]" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+  <!-- Header -->
+  <header class="flex flex-wrap items-center justify-between px-4 py-3 border-b border-solid border-b-[#f4ede7] sm:px-6 md:px-10">
+    <div class="flex items-center gap-4 text-[#1c140d]" href="Sample.html">
+      <div class="size-4">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+        </svg>
+      </div>
+      <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]" >Culinary Canvas</h2>
+    </div>
+    
+    <!-- Desktop Navigation -->
+    <div class="hidden w-full md:flex md:w-auto md:items-center md:gap-8">
+      <div class="flex flex-col md:flex-row gap-4 py-4 md:py-0">
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Rcp.html">Recipes</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Learn/How-to</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Seasonal Sensations</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Blog.html">Blog</a>
+      </div>
+      <div class="flex items-center gap-2 md:gap-4">
+        <a href="login.html" class="flex items-center justify-center h-10 px-4 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-xl whitespace-nowrap min-w-[84px] hover:bg-[#e07015] transition-colors">
+          Subscribe
+        </a>
+        <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+          </svg>
+          <span class="hidden md:inline ml-2">Search</span>
+        </button>
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4uvdvlsrW0G9kAzK7wgwQoTzc1Ufn1Z3JJ_5Njpkn1zb_9TKMFXdNPns0mWwrY1iFMU7S_Rw7Vg54uXnschOER95vRhRfqy2vaJCJUBxxLOVEjHrjGxrV-oekCDYPfMce4wINSYoVlFD7u-Mepg2tCL_qmGT6H88eTgCQ8kPcSDqNfyvjawD6YpgGO2dEcbTjHxUHVTfdch4OycM0WEhnl6lT5fVglMICE7yeOeFTmKBMet07plx0DG9HJzsklEAP3o4jekRXCn8");'></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Bookmarks Content -->
+  <main class="px-4 md:px-10 lg:px-20 xl:px-40 py-8">
+    <div class="max-w-[1200px] mx-auto">
+      <!-- Page Header -->
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center justify-center bg-[#f4ede7] rounded-full w-16 h-16 mb-4">
+          <i class="fas fa-bookmark text-[#f38124] text-2xl"></i>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-[#1c140d] mb-2">My Saved Recipes</h1>
+        <p class="text-[#9c6f49] max-w-2xl mx-auto">All your favorite recipes in one place. Organize, plan, and cook from your personal collection.</p>
+      </div>
+      
+      <!-- Controls Section -->
+      <div class="bg-white rounded-xl shadow-md p-5 mb-8">
+        <div class="flex flex-col md:flex-row justify-between gap-4">
+          <!-- Search -->
+          <div class="relative flex-1 max-w-md">
+            <input type="text" placeholder="Search your bookmarks..." class="w-full pl-10 pr-4 py-3 border border-[#f4ede7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#f38124] focus:border-transparent">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-[#9c6f49]"></i>
+          </div>
+          
+          <!-- Filter and Sort -->
+          <div class="flex gap-3 flex-wrap">
+            <div class="flex items-center">
+              <label class="text-[#1c140d] font-medium mr-2 whitespace-nowrap">Sort by:</label>
+              <select class="border border-[#f4ede7] rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#f38124] focus:border-transparent">
+                <option>Newest</option>
+                <option>Oldest</option>
+                <option>Prep Time (Low to High)</option>
+                <option>Prep Time (High to Low)</option>
+                <option>Alphabetical (A-Z)</option>
+                <option>Alphabetical (Z-A)</option>
+              </select>
+            </div>
+            
+            <div class="flex items-center">
+              <label class="text-[#1c140d] font-medium mr-2 whitespace-nowrap">View:</label>
+              <div class="flex bg-[#f4ede7] p-1 rounded-xl">
+                <button class="p-2 rounded-lg hover:bg-white transition-colors view-toggle grid-view active">
+                  <i class="fas fa-th-large"></i>
+                </button>
+                <button class="p-2 rounded-lg hover:bg-white transition-colors view-toggle list-view">
+                  <i class="fas fa-list"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tags Filter -->
+        <div class="mt-4 flex flex-wrap gap-2">
+          <button class="bookmark-tag active px-3 py-1 bg-[#f4ede7] text-[#1c140d] rounded-full text-sm">All Recipes</button>
+          <button class="bookmark-tag px-3 py-1 bg-[#f4ede7] text-[#1c140d] rounded-full text-sm">Breakfast</button>
+          <button class="bookmark-tag px-3 py-1 bg-[#f4ede7] text-[#1c140d] rounded-full text-sm">Lunch</button>
+          <button class="bookmark-tag px-3 py-1 bg-[#f4ede7] text-[#1c140d] rounded-full text-sm">Dinner</button>
+          <button class="bookmark-tag px-3 py-1 bg-[#f4ede7] text-[#1c140d] rounded-full text-sm">Vegetarian</button>
+          <button class="bookmark-tag px-3 py-1 bg-[#f4ede7] text-[#1c140d] rounded-full text-sm">Vegan</button>
+          <button class="bookmark-tag px-3 py-1 bg-[#f4ede7] text-[#1c140d] rounded-full text-sm">Quick Meals</button>
+          <button class="bookmark-tag px-3 py-1 bg-[#f4ede7] text-[#1c140d] rounded-full text-sm">Desserts</button>
+        </div>
+      </div>
+      
+      <!-- Bookmarks Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10" id="bookmarks-container">
+        <!-- Bookmarked Recipe Cards Will Appear Here -->
+      </div>
+      
+      <!-- Empty State -->
+      <div id="empty-bookmarks" class="hidden empty-bookmarks rounded-xl shadow-md p-12 text-center">
+        <div class="max-w-md mx-auto">
+          <div class="flex justify-center mb-6">
+            <div class="bg-[#f4ede7] rounded-full w-24 h-24 flex items-center justify-center">
+              <i class="fas fa-bookmark text-[#9c6f49] text-4xl"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-[#1c140d] mb-3">Your recipe collection is empty</h3>
+          <p class="text-[#9c6f49] mb-6">Start saving your favorite recipes by clicking the bookmark icon on any recipe card.</p>
+          <a href="Rcp.html" class="inline-flex items-center justify-center h-12 px-6 bg-[#f38124] text-[#1c140d] font-bold rounded-xl hover:bg-[#e07015] transition-colors">
+            <i class="fas fa-utensils mr-2"></i>Explore Recipes
+          </a>
+        </div>
+      </div>
+      
+      <!-- Export Options -->
+      <div class="bg-white rounded-xl shadow-md p-6 mt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div>
+            <h3 class="text-xl font-bold text-[#1c140d] mb-1">Export Your Collection</h3>
+            <p class="text-[#9c6f49]">Save your recipes as PDF or create a grocery list</p>
+          </div>
+          <div class="flex gap-3">
+            <button class="flex items-center justify-center h-12 px-6 bg-[#f4ede7] text-[#1c140d] font-medium rounded-xl hover:bg-[#e5dcd6] transition-colors">
+              <i class="fas fa-file-pdf mr-2 text-red-500"></i> Export as PDF
+            </button>
+            <button class="flex items-center justify-center h-12 px-6 bg-[#f38124] text-[#1c140d] font-bold rounded-xl hover:bg-[#e07015] transition-colors">
+              <i class="fas fa-list-alt mr-2"></i> Create Grocery List
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto">
+    <div class="max-w-[960px] mx-auto w-full">
+      <div class="flex flex-col gap-6 px-5 py-10 text-center">
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="About.html">About Us</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Contact</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Privacy Policy</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Terms of Service</a>
+        </div>
+        <div class="flex justify-center gap-6">
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-pinterest text-xl"></i>
+          </a>
+        </div>
+        <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sample bookmarked recipes data
+    const bookmarkedRecipes = [
+      {
+        id: 1,
+        title: "Rajma Chawal",
+        description: "Kidney beans curry served with steamed rice",
+        image: "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        prepTime: "20 mins",
+        cookTime: "1 hr",
+        cuisine: "Indian",
+        tags: ["Dinner", "Vegetarian", "Comfort Food"],
+        bookmarked: true
+      },
+      {
+        id: 2,
+        title: "Paneer Butter Masala",
+        description: "Cottage cheese in rich tomato gravy",
+        image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        prepTime: "25 mins",
+        cookTime: "30 mins",
+        cuisine: "Indian",
+        tags: ["Dinner", "Vegetarian"],
+        bookmarked: true
+      },
+      {
+        id: 3,
+        title: "Classic Lemon Chicken",
+        description: "Tangy grilled chicken with herbs",
+        image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        prepTime: "15 mins",
+        cookTime: "25 mins",
+        cuisine: "Continental",
+        tags: ["Lunch", "Dinner", "High-Protein"],
+        bookmarked: true
+      },
+      {
+        id: 4,
+        title: "Vegan Dal Tadka",
+        description: "Lentil curry with tempered spices",
+        image: "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        prepTime: "10 mins",
+        cookTime: "40 mins",
+        cuisine: "Indian",
+        tags: ["Lunch", "Vegan", "High-Protein"],
+        bookmarked: true
+      },
+      {
+        id: 5,
+        title: "Zucchini Noodles",
+        description: "Spiralized zucchini with pesto sauce",
+        image: "https://plus.unsplash.com/premium_photo-1663843332694-2c1a841bfa09?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        prepTime: "15 mins",
+        cookTime: "10 mins",
+        cuisine: "Continental",
+        tags: ["Lunch", "Low-Carb", "Quick Meals"],
+        bookmarked: true
+      },
+      {
+        id: 6,
+        title: "Chole Bhature",
+        description: "Spicy chickpeas with fried bread",
+        image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+        prepTime: "30 mins",
+        cookTime: "45 mins",
+        cuisine: "Indian",
+        tags: ["Breakfast", "Lunch", "Vegetarian"],
+        bookmarked: true
+      }
+    ];
+
+    // Function to render bookmarked recipes
+    function renderBookmarks() {
+      const container = document.getElementById('bookmarks-container');
+      const emptyState = document.getElementById('empty-bookmarks');
+      
+      // Clear container
+      container.innerHTML = '';
+      
+      if (bookmarkedRecipes.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      
+      emptyState.classList.add('hidden');
+      
+      bookmarkedRecipes.forEach(recipe => {
+        const card = document.createElement('div');
+        card.className = 'recipe-card bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full';
+        card.innerHTML = `
+          <div class="relative">
+            <div class="bg-center bg-no-repeat bg-cover w-full h-48" style="background-image: url('${recipe.image}');"></div>
+            <button class="absolute top-3 right-3 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-md bookmark-toggle" data-id="${recipe.id}">
+              <i class="fas fa-bookmark text-xl ${recipe.bookmarked ? 'bookmark-active' : 'text-[#9c6f49]'}"></i>
+            </button>
+          </div>
+          <div class="p-5 flex flex-col flex-grow">
+            <div class="flex justify-between items-start mb-3">
+              <h3 class="font-bold text-[#1c140d] text-lg">${recipe.title}</h3>
+            </div>
+            <p class="text-sm text-[#9c6f49] mb-4 flex-grow">${recipe.description}</p>
+            
+            <div class="flex flex-wrap gap-2 mb-4">
+              ${recipe.tags.map(tag => `<span class="px-2 py-1 bg-[#f4ede7] text-[#9c6f49] rounded-full text-xs">${tag}</span>`).join('')}
+            </div>
+            
+            <div class="flex justify-between text-sm text-[#1c140d] mb-4">
+              <div class="flex items-center">
+                <i class="fas fa-clock text-[#f38124] mr-2"></i>
+                <span>Prep: ${recipe.prepTime}</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-fire text-[#f38124] mr-2"></i>
+                <span>Cook: ${recipe.cookTime}</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-globe-asia text-[#f38124] mr-2"></i>
+                <span>${recipe.cuisine}</span>
+              </div>
+            </div>
+            
+            <div class="flex justify-between gap-2 mt-auto">
+              <button class="flex-1 py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                <i class="fas fa-calendar-plus mr-1"></i> Plan
+              </button>
+              <button class="flex-1 py-2 bg-[#f4ede7] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e5dcd6] transition-colors">
+                <i class="fas fa-share-alt mr-1"></i> Share
+              </button>
+              <a href="recipe-detail.html" class="flex-1 py-2 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-lg hover:bg-[#e07015] transition-colors text-center">
+                <i class="fas fa-utensils mr-1"></i> Cook
+              </a>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Function to save recipe to bookmarks (using localStorage)
+    function saveBookmark(recipeId) {
+      // In a real app, you would save to localStorage or a backend
+      // For this demo, we'll just toggle the bookmark status
+      const recipe = bookmarkedRecipes.find(r => r.id === recipeId);
+      if (recipe) {
+        recipe.bookmarked = !recipe.bookmarked;
+        
+        // If unbookmarked, remove from the list
+        if (!recipe.bookmarked) {
+          const index = bookmarkedRecipes.findIndex(r => r.id === recipeId);
+          if (index !== -1) {
+            bookmarkedRecipes.splice(index, 1);
+          }
+        }
+        
+        renderBookmarks();
+      }
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render initial bookmarks
+      renderBookmarks();
+      
+      // Bookmark toggle
+      document.addEventListener('click', (e) => {
+        if (e.target.closest('.bookmark-toggle')) {
+          const button = e.target.closest('.bookmark-toggle');
+          const recipeId = parseInt(button.dataset.id);
+          saveBookmark(recipeId);
+        }
+        
+        // Tag filter
+        if (e.target.closest('.bookmark-tag')) {
+          const tags = document.querySelectorAll('.bookmark-tag');
+          tags.forEach(tag => tag.classList.remove('active'));
+          e.target.closest('.bookmark-tag').classList.add('active');
+        }
+        
+        // View toggle
+        if (e.target.closest('.view-toggle')) {
+          const buttons = document.querySelectorAll('.view-toggle');
+          buttons.forEach(btn => btn.classList.remove('active'));
+          e.target.closest('.view-toggle').classList.add('active');
+          
+          const container = document.getElementById('bookmarks-container');
+          if (e.target.closest('.grid-view')) {
+            container.classList.remove('grid-cols-1');
+            container.classList.add('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3');
+          } else {
+            container.classList.remove('grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3');
+            container.classList.add('grid-cols-1');
+          }
+        }
+      });
+    });
+  </script><script src="js/bookmark.js"></script>      <script src="js/bookmark-page.js"></script>
+</body>
+</html>

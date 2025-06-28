@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover delicious recipes, cooking tips, and culinary inspiration at Culinary Canvas">
+    
+    <title>Culinary Canvas - Discover Your Next Favorite Dish</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <!-- Preload critical font -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap"></noscript>
+
+    <!-- Tailwind CSS with just the plugins we need -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,container-queries"></script>
+    <style>
+      /* Fallback font stack */
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
+                     'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+      }
+      
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      /* Better image rendering */
+      img, [style*="background-image"] {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+      }
+      
+      /* Focus styles for accessibility */
+      a:focus, button:focus, input:focus {
+        outline: 2px solid #f38124;
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body class="bg-[#fcfaf8] text-[#1c140d] antialiased">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white focus:px-4 focus:py-2 focus:rounded focus:z-50">
+      Skip to content
+    </a>
+
+    <div class="min-h-screen flex flex-col">
+      <!-- Header -->
+      <header class="sticky top-0 z-10 bg-[#fcfaf8] border-b border-[#f4ede7] px-4 py-3 md:px-10">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center gap-2 md:gap-4">
+            <div class="w-4 h-4 text-[#f38124]">
+              <svg viewBox="0 0 48 48" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z"></path>
+              </svg>
+            </div>
+            <h1 class="text-lg font-bold tracking-tight">Culinary Canvas</h1>
+          </div>
+
+          <!-- Mobile menu button (hidden on desktop) -->
+          <button class="md:hidden p-2 rounded-md focus:outline-none" aria-label="Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex items-center gap-6">
+            <div class="flex items-center gap-6 lg:gap-9">
+              <a href="#" class="text-sm font-medium hover:text-[#f38124] transition-colors">Recipes</a>
+              <a href="#" class="text-sm font-medium hover:text-[#f38124] transition-colors">Learn/How-to</a>
+              <a href="#" class="text-sm font-medium hover:text-[#f38124] transition-colors">Seasonal Sensations</a>
+              <a href="#" class="text-sm font-medium hover:text-[#f38124] transition-colors">Shop</a>
+            </div>
+            
+            <div class="flex items-center gap-2 ml-6">
+              <button class="bg-[#f38124] hover:bg-[#e5731a] text-sm font-bold px-4 py-2 rounded-xl transition-colors">
+                Subscribe
+              </button>
+              <button class="bg-[#f4ede7] p-2 rounded-xl" aria-label="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+                  <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+                </svg>
+              </button>
+            </div>
+            
+            <div class="ml-4 w-10 h-10 rounded-full bg-cover bg-center" 
+                 style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB4uvdvlsrW0G9kAzK7wgwQoTzc1Ufn1Z3JJ_5Njpkn1zb_9TKMFXdNPns0mWwrY1iFMU7S_Rw7Vg54uXnschOER95vRhRfqy2vaJCJUBxxLOVEjHrjGxrV-oekCDYPfMce4wINSYoVlFD7u-Mepg2tCL_qmGT6H88eTgCQ8kPcSDqNfyvjawD6YpgGO2dEcbTjHxUHVTfdch4OycM0WEhnl6lT5fVglMICE7yeOeFTmKBMet07plx0DG9HJzsklEAP3o4jekRXCn8')"
+                 aria-label="User profile">
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Mobile Menu (hidden by default) -->
+      <div class="md:hidden hidden bg-white py-4 px-6 border-b border-[#f4ede7]">
+        <nav class="flex flex-col gap-4">
+          <a href="#" class="font-medium hover:text-[#f38124]">Recipes</a>
+          <a href="#" class="font-medium hover:text-[#f38124]">Learn/How-to</a>
+          <a href="#" class="font-medium hover:text-[#f38124]">Seasonal Sensations</a>
+          <a href="#" class="font-medium hover:text-[#f38124]">Shop</a>
+          <button class="bg-[#f38124] text-white font-bold py-2 px-4 rounded-xl mt-2">
+            Subscribe
+          </button>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <main id="main-content" class="flex-1">
+        <!-- Hero Section -->
+        <section class="relative bg-cover bg-center py-16 md:py-24 px-4 md:px-10" 
+                 style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDn3bUgqMeJGVpAggKvYkBR7ChuVM6ASK87KE3QMFqkK7HhcquZ1DtjcVLwR4Gn3eMQ9vWhLE67L4-DyqHUcHELD58zzZVkwXEx7uCNSTGd5iIPzil4r55yJOngP7eyjugk0doD_EgtJVJFJ5XyW0psXc1ZgJjlf4OttLLmKhAOZqA1IYz2VgesQnjPXie8gZzL0ESyHNeLCYDWh9H0zs9mz-fKIxDXHtKxF3HPKA1Tn2ebnlW9z9M9LVbSB4tH6auEM_iNInEiyWk')">
+          <div class="max-w-4xl mx-auto text-center text-white">
+            <h1 class="text-3xl md:text-5xl font-black mb-4 tracking-tight">
+              Discover Your Next Favorite Dish
+            </h1>
+            <p class="text-base md:text-lg mb-8 max-w-2xl mx-auto">
+              Explore thousands of recipes, cooking tips, and culinary inspiration to elevate your home cooking.
+            </p>
+            <button class="bg-[#f38124] hover:bg-[#e5731a] text-[#1c140d] font-bold py-3 px-6 rounded-xl text-base md:text-lg transition-colors">
+              Explore Recipes
+            </button>
+          </div>
+        </section>
+
+        <!-- Shop by Category -->
+        <section class="py-8 px-4 md:px-10 max-w-7xl mx-auto">
+          <h2 class="text-xl md:text-2xl font-bold mb-6 px-4">Shop by Category</h2>
+          <div class="overflow-x-auto pb-4 -mx-4 px-4">
+            <div class="flex gap-4 md:gap-8 min-w-max">
+              <!-- Category Items -->
+              <div class="flex flex-col items-center gap-4 min-w-[120px] md:min-w-[150px]">
+                <div class="w-full aspect-square rounded-full bg-cover bg-center" 
+                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJklOS3IeikfFmpVMhvid86Yu2t8OtYh3A82QEUNWrIY8cMwpYvZ3NTwnMjhV89b-ZtMF_d49S7HFk4LDNI6sU_2P577Q2FzjYZvnaeGZFxKeSNJwCAC4RCNIsc-_On27RdYb6Y_8enPKDcLQpoN-D0TXvk9_xuIqTjdLeqgQNU98HA4WNaZB4Q5RtlF1WAj5se6RAHDh9ZkEe0P-42Cg7z79fyVMXQs5VvriDtpnVI-5ux6H3T0k8rJRvB_k3_LXce9EJ5kbqEmU')"></div>
+                <p class="font-medium">Vegetables</p>
+              </div>
+              <div class="flex flex-col items-center gap-4 min-w-[120px] md:min-w-[150px]">
+                <div class="w-full aspect-square rounded-full bg-cover bg-center" 
+                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoV4zdaxuW1SXr88qCdL-1le9uUtEPqDNJ8I9o3ODXREDDLPPNVJumE4t8RCubAVXHMDPOAu-wOvJqBa7MeJ7rhmCGhoE7BUStTY4M0Osfa6_EofX5tBEVd11C-vw0hDBgdntj-Zn6k4n9bH16qaWihKQT-PlDEYjmiW_0ZHd5AL0Xrv75NoyhyTdVe1Z3Jll-AybHdp5psadWNXiw1rd3t7MOCBy3ejLKjqEuKumtN-Bukqwo8RYsAV4QCX1kmwmJgzV7NN4k-dI')"></div>
+                <p class="font-medium">Fruits</p>
+              </div>
+              <div class="flex flex-col items-center gap-4 min-w-[120px] md:min-w-[150px]">
+                <div class="w-full aspect-square rounded-full bg-cover bg-center" 
+                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBKp1qpT7GaknUunt7Nlf4vVMF1dHMdzI6JNFhLMrCFao5xnPaZtw8G0AOf-rEaWcqoiZWkEdl51UMD-mvCoanr6aHjBnC2Nba6WqI6UPw2qzpkB0bInlKbB5_CaV1BhNMWWKAcsKa_qo97WnQ7T8wJOsGO7MBtfaLa6wGtG_wQ3qplp9H80SiR9sNCH67NvRCSQ4pfaD61bjeFau6zhRpqfsHnB5vZmY8ozwjW1Y3sHtkZv8El0KlBgQlGb22FCrT3GjCs1fcnRHk')"></div>
+                <p class="font-medium">Meat</p>
+              </div>
+              <div class="flex flex-col items-center gap-4 min-w-[120px] md:min-w-[150px]">
+                <div class="w-full aspect-square rounded-full bg-cover bg-center" 
+                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgBwa6-dZaY-yK5XR_ew7qb1rr4WDlwkzjOdviKrj8OaPFMkH_alCgOK7UQfgT3PwlrsZwVfGkniHEnD8xtPXondMirZYp4PGk3crpDCvFnR8ac0668DMoQ1KeIZVWK9yjJk1xfWL7u5md-Dm5t25NuS0-amg61kvIkRijAh51XoUc8-9f4Tv48-2nDg_4a5fPQouzA_xfRij0ikj7BM_fXRjoi1HUdcorRx874PINQwbvQhQ7iNN5188hKzWLWCpTUMUSLH9T7Cw')"></div>
+                <p class="font-medium">Seafood</p>
+              </div>
+              <div class="flex flex-col items-center gap-4 min-w-[120px] md:min-w-[150px]">
+                <div class="w-full aspect-square rounded-full bg-cover bg-center" 
+                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJ4ZmqK_gYDVk4zQ8HYv_ROhKWILha31mIe5ANmFyOcz89qvJAQ_3jPij63jCSptItdSCi5Gltm2FsbVdcO9pNaa5wCZVn4K4KzCY6J5Qb6aAhevgwiAAOksmDgPD8be5GotW8ugsJlXrP6cFBdyRrNmlDVjixK7bpEPfH3oLMi_W6xjeLhwvIUefWnY5LfDmkw3ihfhNQpvIaifEIXRkdgbTUBtsYsbOefaqiKQ5-f7j5gAG9umrkmKh2oJ9RFuEGI5uFvYdC5PI')"></div>
+                <p class="font-medium">Dairy</p>
+              </div>
+              <div class="flex flex-col items-center gap-4 min-w-[120px] md:min-w-[150px]">
+                <div class="w-full aspect-square rounded-full bg-cover bg-center" 
+                     style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBUqEE6wuMavjfR0UBlzoUakimnnVkfyvsx0VNmCPhcMJqR-25IYPh-8O1q09VHzAIJy5Oa9vQ7reAfadQwws5ibA_0MIswjReBkMyKYjbZQTllVEsvFwG2ZCd195yq0XviNT6gekkkHwi3JzQ13lFDlXk-2prpe14yw6sAZMb8D6U5A3naHYDAYtWsmB8RtRuF3zJEi4lIc0BfHI3xZPnIFA2eDNI-Xhth50B7GoOCKyRWMkmmVI9Z8ZohWAU7oxLWp9YElQKDdY')"></div>
+                <p class="font-medium">Grains</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Trending Recipes -->
+        <section class="py-8 px-4 md:px-10 max-w-7xl mx-auto">
+          <h2 class="text-xl md:text-2xl font-bold mb-6 px-4">Trending Recipes</h2>
+          
+          <!-- Recipe Cards -->
+          <div class="grid gap-6 md:gap-8">
+            <!-- Recipe 1 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm md:flex">
+              <div class="md:w-1/2 aspect-video bg-cover bg-center" 
+                   style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAoHMGb6kDrReUIb2sJHs4ElbN9ZPA4i6szLSeKTJTS7F-bgSdkSqjKxo6KObc67f_OC76Qf__PIz8igzN-cs1QXXUIWdymcj-SvPRfTsqAGlFxCZE6b7yq7aomYdufEx0iYZXYqLKjyGkKmMxJGy7o8tA3ZboefakLyzcNEC_sAr5vDp32QgvswaMK2EfQUs_kYKHmp1Blt7H2F4VZ3dBmITrU07xxntmI4ez8LBy0bMFVy-xE3jAQJPLFz7qO8iRWVz8uF2C77U4')"></div>
+              <div class="p-6 md:w-1/2">
+                <h3 class="text-lg font-bold mb-2">Lemon Herb Roasted Chicken</h3>
+                <p class="text-[#9c6f49] mb-4">A classic dish with a zesty twist, perfect for a weeknight dinner.</p>
+                <p class="text-[#9c6f49] text-sm mb-4">Ingredients: Chicken, Lemon, Garlic, Rosemary</p>
+                <button class="bg-[#f38124] hover:bg-[#e5731a] text-[#1c140d] font-medium py-2 px-4 rounded-xl text-sm transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe 2 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm md:flex">
+              <div class="md:w-1/2 aspect-video bg-cover bg-center" 
+                   style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBifLmpxemUf3WTUESwnMLm0I-v_oCUPzdoCchM8YvhkrUq0PwByx9ileEDxOgh5fTRjO9EOO8n65SjKv9dctMXAlxgYV-EVrjdmXqWm1L3WL_TxfMGEuCDBgYPtNx7LZ0On53Fiu9ocH31IdthbOV5deDpd0P_EU987HnoN6ltMICaZ67fR3Jwqn2gpaGsIiqNQfcqHmdpDtTxUoc8J0Z_oyLMRpMj0wn1iv1QeD_9yL_RwjX7lqBRHo0kYF3XArVx46hH1IyOE0k')"></div>
+              <div class="p-6 md:w-1/2">
+                <h3 class="text-lg font-bold mb-2">Grilled Salmon with Asparagus</h3>
+                <p class="text-[#9c6f49] mb-4">A healthy and flavorful meal ready in under 30 minutes.</p>
+                <p class="text-[#9c6f49] text-sm mb-4">Ingredients: Salmon, Asparagus, Dill, Lemon</p>
+                <button class="bg-[#f38124] hover:bg-[#e5731a] text-[#1c140d] font-medium py-2 px-4 rounded-xl text-sm transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            
+            <!-- Recipe 3 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm md:flex">
+              <div class="md:w-1/2 aspect-video bg-cover bg-center" 
+                   style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzRFnYX24FhHO-UkNqqaYSLHzFWUcXA_yDEWkKD0BBcjFm0135hmCrtp_8GmZFd8A1QaDTLQ0bMJ66tSlI7ckf3gj5nYUbwcVumiQRb-7le1wfvebld3NVxPkDYiggKsfvdU2O9nbmbfUEpeEkv_jiMnFt2wZoK5g0RkwzGnObkRd5MueQ7_GuzR1ejPWrGR1gdIJ7rEWa7lGR7YJFrqKLAZqxopMlkHL6_7aGtSd-SGQixHJSGLsfljIeBuusvOU0y3u0pRJRL8s')"></div>
+              <div class="p-6 md:w-1/2">
+                <h3 class="text-lg font-bold mb-2">Caprese Pasta Salad</h3>
+                <p class="text-[#9c6f49] mb-4">A refreshing and light pasta salad with a taste of summer.</p>
+                <p class="text-[#9c6f49] text-sm mb-4">Ingredients: Pasta, Tomatoes, Basil, Garlic</p>
+                <button class="bg-[#f38124] hover:bg-[#e5731a] text-[#1c140d] font-medium py-2 px-4 rounded-xl text-sm transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recipe Blog -->
+        <section class="py-8 px-4 md:px-10 max-w-7xl mx-auto">
+          <h2 class="text-xl md:text-2xl font-bold mb-6 px-4">Recipe Blog</h2>
+          
+          <div class="grid gap-6 md:gap-8">
+            <!-- Blog Post 1 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm md:flex flex-row-reverse">
+              <div class="md:w-1/3 aspect-video bg-cover bg-center" 
+                   style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmhTZ5YKinLgBWytEW7NVOiKivd20_zbMKq3JmWV7hiVde44LbeEWReeQbUUgG1aVLg1EzNB1ndUNNHVy_Z_h15lH3Wz6KSTdWucTFx4X0VuAN5kAo2AKh0eVqFzqOYL-fAoWH-cz46Xd6H8xkIGEu_rD5LpsSM60uJYmekZ3ivO2toU4fOLiE5cfCPl1aQ9N5MXrSpdKIBXvslzVqbNAXk8meACKIvzNwVDxTYXEPF7Bb9-8q2Dopdmd1Y8xGO10RZ8tIxeDXc1A')"></div>
+              <div class="p-6 md:w-2/3">
+                <h3 class="text-lg font-bold mb-2">The Ultimate Guide to Grilling</h3>
+                <p class="text-[#9c6f49] mb-4">Learn the best techniques and tips for grilling your favorite foods to perfection.</p>
+                <button class="bg-[#f4ede7] hover:bg-[#e8e0d8] text-[#1c140d] font-medium py-2 px-4 rounded-xl text-sm transition-colors inline-flex items-center gap-2">
+                  Read More
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Blog Post 2 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm md:flex flex-row-reverse">
+              <div class="md:w-1/3 aspect-video bg-cover bg-center" 
+                   style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA0jkyj1rsiC2DHsDB9vVLblb-fubtAp5aqW3ELwaWEpVWfUUQVLgjVLdKerZ9GfpPxflr6oqMrR_jTK62VmJRIAgo2D4rS99wSDyxsc2i5VQeJ3KDJcXR0rTcDbsyyKd4iHvF0_aqvhPn91JwS_mQMXmwJ2ulQ6gVGU7iqAui1mc5cY85cc7hrNsKrr00hfUX9MH9iC2xvWtpkYvo0eNqFNZvAoVB1HSL7IDhAkjN0vEkLdCD0ekKEG3090vyHL08ppGViJtw22aE')"></div>
+              <div class="p-6 md:w-2/3">
+                <h3 class="text-lg font-bold mb-2">5 Must-Try Summer Salads</h3>
+                <p class="text-[#9c6f49] mb-4">Beat the heat with these delicious and refreshing salad recipes.</p>
+                <button class="bg-[#f4ede7] hover:bg-[#e8e0d8] text-[#1c140d] font-medium py-2 px-4 rounded-xl text-sm transition-colors inline-flex items-center gap-2">
+                  Read More
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Blog Post 3 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm md:flex flex-row-reverse">
+              <div class="md:w-1/3 aspect-video bg-cover bg-center" 
+                   style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBJhAVnvGzEYrfjKBltVxDXNjwLDr47o-Kg_u-zQ9SDasakxI-ov7jHyNYckXSEOGcUshlYc9P3T4GDyiljEUi4lg-hH-Z7vxPwx3qmdoPZRH8a8Dj4zy3TCs4o-bMjohUJd3Kcz9GpqW1f0IeLFDmOcQF3xflM9_7WBvUyCEzIB_RSCs-q5ZSwjnZ6ktUym8az7q8msBAP5l-UIfKHZ87qy96YDmsqt-eQOj2Jm5OEi3z8pZwrrhtWvNNQKMI5DT76_AksphxHJZg')"></div>
+              <div class="p-6 md:w-2/3">
+                <h3 class="text-lg font-bold mb-2">Baking Basics: Mastering the Art of Bread</h3>
+                <p class="text-[#9c6f49] mb-4">A step-by-step guide to baking your own homemade bread.</p>
+                <button class="bg-[#f4ede7] hover:bg-[#e8e0d8] text-[#1c140d] font-medium py-2 px-4 rounded-xl text-sm transition-colors inline-flex items-center gap-2">
+                  Read More
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Featured Recipes -->
+        <section class="py-8 px-4 md:px-10 max-w-7xl mx-auto">
+          <h2 class="text-xl md:text-2xl font-bold mb-6 px-4">Featured Recipes</h2>
+          
+          <div class="grid gap-6 md:gap-8">
+            <!-- Featured Recipe 1 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm md:flex flex-row-reverse">
+              <div class="md:w-1/3 aspect-video bg-cover bg-center" 
+                   style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhbL5wt2othe-FLh1oXlpO4tuljthdMKZqGHh5ROl6gDuehJCGdetu5RHTyeLg8Ry3QjOMZGUnGDn9GppW5kAPRs9DYmGGDfwi1A9uVyh4luHnAhE-HtFdm4a4qfXxd40Ae3GftwsNWgvQtLTRWiNOkzaqutHQWmPAvOsrDDNctYMkA8verruqnIpVpRwXcxBSOn76rR2duS_8LISTCr09j4sByiKXzypW5Ine_4ucFMx3hGMoxRXQG-x05Ve0eG-hsMnbIN1qxG8')"></div>
+              <div class="p-6 md:w-2/3">
+                <h3 class="text-lg font-bold mb-2">Spicy Shrimp Tacos with Mango Salsa</h3>
+                <p class="text-[#9c6f49] mb-4">A vibrant and flavorful dish perfect for a casual gathering.</p>
+                <button class="bg-[#f4ede7] hover:bg-[#e8e0d8] text-[#1c140d] font-medium py-2 px-4 rounded-xl text-sm transition-colors inline-flex items-center gap-2">
+                  View Recipe
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            
+            <!-- Featured Recipe 2 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm md:flex flex-row-reverse">
+              <div class="md:w-1/3 aspect-video bg-cover bg-center" 
+                   style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4qSkHb1a9fSavDVUSDW2eKPw4iDZzHATehqXC4eTgkMc5WLOMA1GgG3QtDuSmp_ko2My03Tn_aEor2XGihdIhd-ADLuA1Y9Snz5oVaoklRtUaL86SqOpc3iz2vjaaclM_odaJ8JH6fYcqubWqJtNXthj5U64SjNFmbbvQ7JLbBgntCLiJAlpl82rW759Hr9fBoMKBRQE03SVcSO_uAsfQ7BezXMDvlU1zqjfMuiOUOi1pjRuHHPcV_yiEvZy6CpGnRkSLpS8Jx9c')"></div>
+              <div class="p-6 md:w-2/3">
+                <h3 class="text-lg font-bold mb-2">Creamy Tomato Soup with Grilled Cheese Croutons</h3>
+                <p class="text-[#9c6f49] mb-4">A comforting classic with a fun and delicious twist.</p>
+                <button class="bg-[#f4
+
+
+
+<button class="bg-[#f4ede7] hover:bg-[#e8e0d8] text-[#1c140d] font-medium py-2 px-4 rounded-xl text-sm transition-colors inline-flex items-center gap-2">
+  View Recipe
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+    <path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path>
+  </svg>
+</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#fcfaf8] border-t border-[#f4ede7] py-6 px-4 md:px-10">
+  <div class="max-w-7xl mx-auto text-sm text-[#6b4e3d] flex flex-col md:flex-row justify-between items-center">
+    <p>&copy; 2025 Culinary Canvas. All rights reserved.</p>
+    <div class="flex gap-4 mt-2 md:mt-0">
+      <a href="#" class="hover:text-[#f38124]">Privacy Policy</a>
+      <a href="#" class="hover:text-[#f38124]">Terms of Use</a>
+      <a href="#" class="hover:text-[#f38124]">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Culinary Canvas</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    @layer utilities {
+      .category-header {
+        position: relative;
+      }
+      .category-header::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #f38124;
+        border-radius: 2px;
+      }
+      .policy-section {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+      }
+      .policy-section:hover {
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      }
+      .policy-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+      .policy-content.active {
+        max-height: 1000px; /* Adjust as needed for content length */
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#fcfaf8]" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+  <header class="flex flex-wrap items-center justify-between px-4 py-3 border-b border-solid border-b-[#f4ede7] sm:px-6 md:px-10">
+    <div class="flex items-center gap-4 text-[#1c140d]">
+      <div class="size-4">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBIEFmcFZOd0kGa7XD29hDjwSgHQ_8DXuS0Q&s">
+          <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+        </svg>
+      </div>
+      <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Culinary Canvas</h2>
+    </div>
+
+    <div class="hidden w-full md:flex md:w-auto md:items-center md:gap-8">
+      <div class="flex flex-col md:flex-row gap-4 py-4 md:py-0">
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Rcp.html">Recipes</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Learn/How-to</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Seasonal Sensations</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Blog.html">Blogs</a>
+      </div>
+      <div class="flex items-center gap-2 md:gap-4">
+       <a href="login.html" class="flex items-center justify-center h-10 px-4 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-xl whitespace-nowrap min-w-[84px] hover:bg-[#e07015] transition-colors">
+          Subscribe
+        </a>
+        <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+          </svg>
+          <span class="hidden md:inline ml-2">Search</span>
+        </button>
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4uvdvlsrW0G9kAzK7wgwQoTzc1Ufn1Z3JJ_5Njpkn1zb_9TKMFXdNPns0mWwrY1iFMU7S_Rw7Vg54uXnschOER95vRhRfqy2vaJCJUBxxLOVEjHrjGxrV-oekCDYPfMce4wINSYoVlFD7u-Mepg2tCL_qmGT6H88eTgCQ8kPcSDqNfyvjawD6YpgGO2dEcbTjHxUHVTfdch4OycM0WEhnl6lT5fVglMICE7yeOeFTmKBMet07plx0DG9HJzsklEAP3o4jekRXCn8");'></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="px-0 md:px-10 lg:px-20 xl:px-40 py-0">
+    <div class="relative w-full h-[250px] md:h-[350px] bg-cover bg-center flex items-center justify-center text-white"
+         style="background-image: url('https://images.unsplash.com/photo-1549887588-ed2372c3d52c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+         <div class="absolute inset-0 bg-black opacity-40"></div>
+      <div class="relative z-10 text-center">
+        <h1 class="text-3xl md:text-5xl font-bold mb-4">Privacy Policy</h1>
+        <p class="text-lg md:text-xl text-gray-200">Last updated: June 25, 2025</p>
+      </div>
+    </div>
+
+    <div class="max-w-[960px] mx-auto p-4 md:p-0 pt-8">
+      <div class="bg-white rounded-2xl p-6 mb-8 shadow-md">
+        <p class="text-[#1c140d] mb-4">
+          At Culinary Canvas, we take your privacy seriously. This Privacy Policy explains how we collect, use,
+          disclose, and safeguard your information when you visit our website culinarycanvas.com.
+        </p>
+        <p class="text-[#1c140d]">
+          Please read this policy carefully. By accessing our site, you agree to the terms of this Privacy Policy.
+          If you do not agree with the terms, please do not access the site.
+        </p>
+      </div>
+
+      <div class="policy-section p-6 mb-8">
+        <div class="flex items-center justify-between cursor-pointer" id="section1-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header flex items-center gap-2">
+            <i class="fas fa-info-circle text-[#f38124]"></i> 1. Information We Collect
+          </h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="policy-content mt-6" id="section1-content">
+          <p class="text-[#1c140d] mb-6">
+            We collect several types of information to provide and improve our services:
+          </p>
+
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3 flex items-center gap-2">
+              <i class="fas fa-user text-[#9c6f49]"></i> a. Personal Information
+            </h3>
+            <p class="text-[#9c6f49] mb-4">
+              When you create an account, subscribe to newsletters, or submit a recipe, we may collect:
+            </p>
+            <ul class="list-disc pl-5 text-[#9c6f49] space-y-2">
+              <li>Name</li>
+              <li>Email address</li>
+              <li>Profile image (optional)</li>
+              <li>Account preferences</li>
+            </ul>
+          </div>
+
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3 flex items-center gap-2">
+              <i class="fas fa-chart-bar text-[#9c6f49]"></i> b. Usage Data
+            </h3>
+            <p class="text-[#9c6f49] mb-4">
+              Collected automatically when you access our Site:
+            </p>
+            <ul class="list-disc pl-5 text-[#9c6f49] space-y-2">
+              <li>Browser type and version</li>
+              <li>IP address</li>
+              <li>Device type</li>
+              <li>Pages visited and time spent</li>
+              <li>Referring website addresses</li>
+            </ul>
+          </div>
+
+          <div class="ml-4">
+            <h3 class="font-bold text-[#1c140d] mb-3 flex items-center gap-2">
+              <i class="fas fa-cookie-bite text-[#9c6f49]"></i> c. Cookies and Tracking Technologies
+            </h3>
+            <p class="text-[#9c6f49]">
+              We use cookies and similar tools to enhance user experience and gather analytical data.
+              You can disable cookies in your browser settings, but some features may not function properly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-section p-6 mb-8">
+        <div class="flex items-center justify-between cursor-pointer" id="section2-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header flex items-center gap-2">
+            <i class="fas fa-cogs text-[#f38124]"></i> 2. How We Use Your Information
+          </h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="policy-content mt-6" id="section2-content">
+          <p class="text-[#1c140d] mb-4">
+            We use the collected data for purposes including:
+          </p>
+          <ul class="list-disc pl-5 text-[#9c6f49] space-y-3">
+            <li>To personalize your recipe experience</li>
+            <li>To save your favorite or submitted recipes</li>
+            <li>To improve website performance and content</li>
+            <li>To send newsletters or updates (if subscribed)</li>
+            <li>To respond to inquiries or feedback</li>
+            <li>To detect and prevent fraud or abuse</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="policy-section p-6 mb-8">
+        <div class="flex items-center justify-between cursor-pointer" id="section3-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header flex items-center gap-2">
+            <i class="fas fa-share-alt text-[#f38124]"></i> 3. Sharing Your Information
+          </h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="policy-content mt-6" id="section3-content">
+          <p class="text-[#1c140d] mb-6">
+            We do not sell your personal data. We may share information only with:
+          </p>
+
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3 flex items-center gap-2">
+              <i class="fas fa-cloud text-[#9c6f49]"></i> Service Providers:
+            </h3>
+            <p class="text-[#9c6f49]">
+              For analytics, email services, or hosting.
+            </p>
+          </div>
+
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3 flex items-center gap-2">
+              <i class="fas fa-balance-scale text-[#9c6f49]"></i> Legal Requirements:
+            </h3>
+            <p class="text-[#9c6f49]">
+              If required by law or in response to lawful requests.
+            </p>
+          </div>
+
+          <div class="ml-4">
+            <h3 class="font-bold text-[#1c140d] mb-3 flex items-center gap-2">
+              <i class="fas fa-exchange-alt text-[#9c6f49]"></i> Business Transfers:
+            </h3>
+            <p class="text-[#9c6f49]">
+              In case of a merger, acquisition, or sale of assets.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="policy-section p-6 mb-8">
+        <div class="flex items-center justify-between cursor-pointer" id="section4-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header flex items-center gap-2">
+            <i class="fas fa-user-shield text-[#f38124]"></i> 4. Your Data Rights
+          </h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="policy-content mt-6" id="section4-content">
+          <p class="text-[#1c140d] mb-6">
+            Depending on your jurisdiction (e.g., EU under GDPR), you may have the right to:
+          </p>
+          <ul class="list-disc pl-5 text-[#9c6f49] space-y-3 mb-6">
+            <li>Access the data we hold about you</li>
+            <li>Request correction or deletion</li>
+            <li>Withdraw consent for processing</li>
+            <li>Request a copy of your data</li>
+          </ul>
+          <p class="text-[#1c140d]">
+            To exercise these rights, email us at:
+            <a href="mailto:privacy@culinarycanvas.com" class="text-[#f38124] hover:underline">privacy@culinarycanvas.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="policy-section p-6 mb-8">
+        <div class="flex items-center justify-between cursor-pointer" id="section5-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header flex items-center gap-2">
+            <i class="fas fa-lock text-[#f38124]"></i> 5. Data Security
+          </h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="policy-content mt-6" id="section5-content">
+          <p class="text-[#1c140d]">
+            We take your privacy seriously. All data is stored securely with encryption and restricted access.
+            However, no transmission over the internet is 100% secure; use our platform at your discretion.
+          </p>
+        </div>
+      </div>
+
+      <div class="policy-section p-6 mb-8">
+        <div class="flex items-center justify-between cursor-pointer" id="section6-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header flex items-center gap-2">
+            <i class="fas fa-external-link-alt text-[#f38124]"></i> 6. Third-Party Links
+          </h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="policy-content mt-6" id="section6-content">
+          <p class="text-[#1c140d]">
+            Our Site may include links to external websites (e.g., YouTube for video tutorials).
+            We are not responsible for their content or privacy practices.
+            Please review their privacy policies separately.
+          </p>
+        </div>
+      </div>
+
+      <div class="policy-section p-6 mb-8">
+        <div class="flex items-center justify-between cursor-pointer" id="section7-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header flex items-center gap-2">
+            <i class="fas fa-child text-[#f38124]"></i> 7. Children's Privacy
+          </h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="policy-content mt-6" id="section7-content">
+          <p class="text-[#1c140d]">
+            Our website is not intended for children under 13. We do not knowingly collect data from minors.
+            If we learn we have collected personal data from a child, we will delete it promptly.
+          </p>
+        </div>
+      </div>
+
+      <div class="policy-section p-6 mb-8">
+        <div class="flex items-center justify-between cursor-pointer" id="section8-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header flex items-center gap-2">
+            <i class="fas fa-sync-alt text-[#f38124]"></i> 8. Changes to This Policy
+          </h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="policy-content mt-6" id="section8-content">
+          <p class="text-[#1c140d]">
+            We may update this Privacy Policy periodically. Changes will be reflected with an updated date at the top of this page.
+            We encourage users to review it occasionally.
+          </p>
+        </div>
+      </div>
+
+      <div class="policy-section p-6 mb-8">
+        <div class="flex items-center justify-between cursor-pointer" id="section9-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header flex items-center gap-2">
+            <i class="fas fa-envelope text-[#f38124]"></i> 9. Contact Us
+          </h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="policy-content mt-6" id="section9-content">
+          <p class="text-[#1c140d] mb-4">
+            If you have questions or concerns about this Privacy Policy, please contact us:
+          </p>
+          <ul class="text-[#9c6f49] space-y-2">
+            <li>Email: <a href="mailto:privacy@culinarycanvas.com" class="text-[#f38124] hover:underline">privacy@culinarycanvas.com</a></li>
+            <li>Address: Culinary Canvas, 123 Gourmet Street, Culinary City, CC 10001</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 text-center mb-12 shadow-md">
+        <h3 class="text-xl font-bold text-[#1c140d] mb-4">Your Acceptance of These Terms</h3>
+        <p class="text-[#9c6f49]">
+          By using this site, you signify your acceptance of this Privacy Policy.
+          If you do not agree to this policy, please do not use our site.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="mt-auto">
+    <div class="max-w-[960px] mx-auto w-full">
+      <div class="flex flex-col gap-6 px-5 py-10 text-center">
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="About.html">About Us</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Contact</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="privacy.html">Privacy Policy</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Terms of Service</a>
+        </div>
+        <div class="flex justify-center gap-6">
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-pinterest text-xl"></i>
+          </a>
+        </div>
+        <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Accordion functionality for policy sections
+    document.querySelectorAll('[id$="-toggle"]').forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const contentId = this.id.replace('-toggle', '-content');
+        const content = document.getElementById(contentId);
+        const icon = this.querySelector('i.fa-chevron-down, i.fa-chevron-up'); // Select the correct chevron icon
+
+        // Toggle active class
+        content.classList.toggle('active');
+
+        // Rotate icon
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+      });
+    });
+
+    // Open first section by default
+    document.getElementById('section1-content').classList.add('active');
+    document.querySelector('#section1-toggle i').classList.remove('fa-chevron-down');
+    document.querySelector('#section1-toggle i').classList.add('fa-chevron-up');
+  </script>
+</body>
+</html>

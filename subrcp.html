@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rajma Chawal Recipe - Culinary Canvas</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    @layer utilities {
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .recipe-card {
+        transition: all 0.3s ease;
+      }
+      .recipe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+      .category-header {
+        position: relative;
+      }
+      .category-header::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #f38124;
+        border-radius: 2px;
+      }
+      .bookmark-icon {
+        transition: all 0.2s ease;
+      }
+      .bookmark-icon:hover {
+        color: #f38124;
+        transform: scale(1.1);
+      }
+      .scroll-btn {
+        display: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 10;
+        cursor: pointer;
+      }
+      .scroll-container:hover .scroll-btn {
+        display: flex;
+      }
+      .scroll-left {
+        left: 10px;
+      }
+      .scroll-right {
+        right: 10px;
+      }
+      .ingredient-checkbox:checked + .ingredient-label {
+        text-decoration: line-through;
+        color: #9c6f49;
+      }
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background-color: #f38124;
+        color: white;
+        border-radius: 50%;
+        font-weight: bold;
+        margin-right: 12px;
+      }
+      .testimonial-card {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+      }
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#fcfaf8]" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+  <!-- Header -->
+  <header class="flex flex-wrap items-center justify-between px-4 py-3 border-b border-solid border-b-[#f4ede7] sm:px-6 md:px-10">
+    <div class="flex items-center gap-4 text-[#1c140d]" href="Sample.html">
+      <div class="size-4">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+        </svg>
+      </div>
+      <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]" >Culinary Canvas</h2>
+    </div>
+    
+    <!-- Desktop Navigation -->
+    <div class="hidden w-full md:flex md:w-auto md:items-center md:gap-8">
+      <div class="flex flex-col md:flex-row gap-4 py-4 md:py-0">
+        <a class="text-sm md:text-base font-medium leading-normal text-[#f38124] border-b-2 border-[#f38124]" href="#">Recipes</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Learn/How-to</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Seasonal Sensations</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Shop</a>
+      </div>
+      <div class="flex items-center gap-2 md:gap-4">
+       <a href="login.html" class="flex items-center justify-center h-10 px-4 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-xl whitespace-nowrap min-w-[84px] hover:bg-[#e07015] transition-colors">
+    Subscribe
+</a>
+        <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+          </svg>
+          <span class="hidden md:inline ml-2">Search</span>
+        </button>
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4uvdvlsrW0G9kAzK7wgwQoTzc1Ufn1Z3JJ_5Njpkn1zb_9TKMFXdNPns0mWwrY1iFMU7S_Rw7Vg54uXnschOER95vRhRfqy2vaJCJUBxxLOVEjHrjGxrV-oekCDYPfMce4wINSYoVlFD7u-Mepg2tCL_qmGT6H88eTgCQ8kPcSDqNfyvjawD6YpgGO2dEcbTjHxUHVTfdch4OycM0WEhnl6lT5fVglMICE7yeOeFTmKBMet07plx0DG9HJzsklEAP3o4jekRXCn8");'></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Recipe Content -->
+  <main class="px-4 md:px-10 lg:px-20 xl:px-40 py-8">
+    <div class="max-w-[960px] mx-auto">
+      <!-- Recipe Header -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-bold text-[#1c140d] mb-2">Rajma Chawal</h1>
+          <p class="text-[#9c6f49] text-lg">Kidney beans curry served with steamed rice</p>
+        </div>
+        <div class="flex items-center gap-3 mt-4 md:mt-0">
+          <div class="flex items-center">
+            <i class="fas fa-clock text-[#f38124] mr-2"></i>
+            <span class="text-[#1c140d]">Prep: 20 mins</span>
+          </div>
+          <div class="mx-2 text-[#9c6f49]">|</div>
+          <div class="flex items-center">
+            <i class="fas fa-fire text-[#f38124] mr-2"></i>
+            <span class="text-[#1c140d]">Cook: 1 hr</span>
+          </div>
+          <div class="mx-2 text-[#9c6f49]">|</div>
+          <div class="flex items-center">
+            <i class="fas fa-users text-[#f38124] mr-2"></i>
+            <span class="text-[#1c140d]">Serves: 4</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Recipe Images -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <div class="rounded-xl overflow-hidden h-64 bg-cover bg-center" style="background-image: url('https://www.secondrecipe.com/wp-content/uploads/2017/08/rajma-chawal-1-720x551.jpg');"></div>
+        <div class="rounded-xl overflow-hidden h-64 bg-cover bg-center" style="background-image: url('https://ranveerbrar.com/wp-content/uploads/2023/02/Kashmiri-rajma.jpg');"></div>
+        <div class="rounded-xl overflow-hidden h-64 bg-cover bg-center" style="background-image: url('https://aartimadan.com/wp-content/uploads/2021/03/Rajma-Chawal.jpg');"></div>
+      </div>
+      
+      <!-- Recipe Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Left Column: Ingredients & Nutrition -->
+        <div class="lg:col-span-1">
+          <!-- Ingredients -->
+          <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-[#1c140d] mb-4 pb-2 border-b border-[#f4ede7]">Ingredients</h2>
+            <div class="mb-6">
+              <h3 class="font-medium text-[#f38124] mb-3">For Rajma (Kidney Beans Curry):</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing1">
+                  <label for="ing1" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>1 cup dried kidney beans, soaked overnight</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing2">
+                  <label for="ing2" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>2 large onions, finely chopped</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing3">
+                  <label for="ing3" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>3 tomatoes, pureed</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing4">
+                  <label for="ing4" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>1 tbsp ginger-garlic paste</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing5">
+                  <label for="ing5" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>2 green chilies, slit</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing6">
+                  <label for="ing6" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>1 tsp turmeric powder</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing7">
+                  <label for="ing7" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>2 tsp red chili powder</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing8">
+                  <label for="ing8" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>1 tbsp rajma masala</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing9">
+                  <label for="ing9" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>2 tbsp oil or ghee</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing10">
+                  <label for="ing10" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>Salt to taste</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing11">
+                  <label for="ing11" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>Fresh coriander for garnish</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="font-medium text-[#f38124] mb-3">For Chawal (Rice):</h3>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing12">
+                  <label for="ing12" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>1 cup basmati rice</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing13">
+                  <label for="ing13" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>2 cups water</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing14">
+                  <label for="ing14" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>1 tsp ghee or oil</span>
+                  </label>
+                </li>
+                <li class="flex items-start">
+                  <input type="checkbox" class="ingredient-checkbox hidden" id="ing15">
+                  <label for="ing15" class="ingredient-label flex items-start cursor-pointer">
+                    <span class="inline-block w-5 h-5 border border-[#9c6f49] rounded mr-3 mt-1 flex-shrink-0"></span>
+                    <span>Salt to taste</span>
+                  </label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Nutrition Facts -->
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-xl font-bold text-[#1c140d] mb-4 pb-2 border-b border-[#f4ede7]">Nutritional Facts</h2>
+            <div class="space-y-3">
+              <div class="flex justify-between">
+                <span class="text-[#1c140d]">Calories</span>
+                <span class="font-medium">420 kcal</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1c140d]">Protein</span>
+                <span class="font-medium">15g</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1c140d]">Carbohydrates</span>
+                <span class="font-medium">72g</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1c140d]">Dietary Fiber</span>
+                <span class="font-medium">12g</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1c140d]">Sugars</span>
+                <span class="font-medium">5g</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1c140d]">Fat</span>
+                <span class="font-medium">10g</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1c140d]">Saturated Fat</span>
+                <span class="font-medium">2g</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1c140d]">Cholesterol</span>
+                <span class="font-medium">0mg</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[#1c140d]">Sodium</span>
+                <span class="font-medium">580mg</span>
+              </div>
+              <p class="text-sm text-[#9c6f49] mt-4">*Per serving (1 cup rajma + 1 cup rice)</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Middle Column: Cooking Directions -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-[#1c140d] mb-6 pb-2 border-b border-[#f4ede7]">Cooking Directions</h2>
+            <div class="space-y-6">
+              <div class="flex">
+                <div class="step-number">1</div>
+                <div>
+                  <h3 class="font-bold text-[#1c140d] mb-1">Prepare the Rajma</h3>
+                  <p class="text-[#9c6f49]">Drain the soaked kidney beans and pressure cook with 4 cups of water and salt for about 15-20 minutes until they are soft and tender.</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="step-number">2</div>
+                <div>
+                  <h3 class="font-bold text-[#1c140d] mb-1">Prepare the Base</h3>
+                  <p class="text-[#9c6f49]">Heat oil or ghee in a pan. Add cumin seeds and let them splutter. Add chopped onions and sauté until golden brown.</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="step-number">3</div>
+                <div>
+                  <h3 class="font-bold text-[#1c140d] mb-1">Add Aromatics</h3>
+                  <p class="text-[#9c6f49]">Add ginger-garlic paste and green chilies. Sauté for 2 minutes until raw smell disappears.</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="step-number">4</div>
+                <div>
+                  <h3 class="font-bold text-[#1c140d] mb-1">Add Spices</h3>
+                  <p class="text-[#9c6f49]">Add turmeric powder, red chili powder, and rajma masala. Mix well and cook for a minute.</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="step-number">5</div>
+                <div>
+                  <h3 class="font-bold text-[#1c140d] mb-1">Add Tomatoes</h3>
+                  <p class="text-[#9c6f49]">Pour in the tomato puree and cook until oil separates from the masala, about 8-10 minutes.</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="step-number">6</div>
+                <div>
+                  <h3 class="font-bold text-[#1c140d] mb-1">Combine and Simmer</h3>
+                  <p class="text-[#9c6f49]">Add the cooked rajma along with its water. Mix well and simmer for 15-20 minutes until the gravy thickens.</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="step-number">7</div>
+                <div>
+                  <h3 class="font-bold text-[#1c140d] mb-1">Prepare Rice</h3>
+                  <p class="text-[#9c6f49]">Wash basmati rice and soak for 15 minutes. Drain and cook with water, ghee/oil, and salt until fluffy.</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="step-number">8</div>
+                <div>
+                  <h3 class="font-bold text-[#1c140d] mb-1">Garnish and Serve</h3>
+                  <p class="text-[#9c6f49]">Garnish rajma with fresh coriander. Serve hot with steamed rice and lemon wedges.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Chef's Testimonials -->
+          <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-xl font-bold text-[#1c140d] mb-6 pb-2 border-b border-[#f4ede7]">Chef's Testimonials</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="testimonial-card bg-[#fcfaf8] rounded-xl p-5 border border-[#f4ede7]">
+                <div class="flex items-center mb-4">
+                  <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12 mr-3" style='background-image: url("https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+                  <div>
+                    <h4 class="font-bold text-[#1c140d]">Chef Vikas Khanna</h4>
+                    <p class="text-sm text-[#9c6f49]">Michelin Star Chef</p>
+                  </div>
+                </div>
+                <p class="text-[#9c6f49] italic">"Rajma Chawal is the epitome of comfort food. The key is to cook the rajma until it's creamy and melt-in-your-mouth tender. This recipe captures the authentic flavors of Punjab perfectly."</p>
+              </div>
+              
+              <div class="testimonial-card bg-[#fcfaf8] rounded-xl p-5 border border-[#f4ede7]">
+                <div class="flex items-center mb-4">
+                  <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12 mr-3" style='background-image: url("https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+                  <div>
+                    <h4 class="font-bold text-[#1c140d]">Chef Sanjeev Kapoor</h4>
+                    <p class="text-sm text-[#9c6f49]">Celebrity Chef</p>
+                  </div>
+                </div>
+                <p class="text-[#9c6f49] italic">"What I love about this Rajma Chawal recipe is its perfect balance of spices. The slow simmering process allows the flavors to develop beautifully. It's a dish that truly represents Indian home cooking."</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Leave a Comment -->
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-xl font-bold text-[#1c140d] mb-6 pb-2 border-b border-[#f4ede7]">Leave a Comment</h2>
+            <form class="space-y-4">
+              <div>
+                <label class="block text-[#1c140d] font-medium mb-2" for="name">Name</label>
+                <input type="text" id="name" class="w-full px-4 py-3 border border-[#f4ede7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#f38124] focus:border-transparent">
+              </div>
+              <div>
+                <label class="block text-[#1c140d] font-medium mb-2" for="email">Email</label>
+                <input type="email" id="email" class="w-full px-4 py-3 border border-[#f4ede7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#f38124] focus:border-transparent">
+              </div>
+              <div>
+                <label class="block text-[#1c140d] font-medium mb-2" for="comment">Your Comment</label>
+                <textarea id="comment" rows="4" class="w-full px-4 py-3 border border-[#f4ede7] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#f38124] focus:border-transparent"></textarea>
+              </div>
+              <div class="flex items-center">
+                <input type="checkbox" id="notify" class="mr-3 h-5 w-5 text-[#f38124] rounded focus:ring-[#f38124]">
+                <label for="notify" class="text-[#1c140d]">Notify me when someone replies</label>
+              </div>
+              <button type="submit" class="w-full py-3 bg-[#f38124] text-[#1c140d] text-base font-bold rounded-xl hover:bg-[#e07015] transition-colors">
+                Post Comment
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto">
+    <div class="max-w-[960px] mx-auto w-full">
+      <div class="flex flex-col gap-6 px-5 py-10 text-center">
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="About.html">About Us</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="Contact.html">Contact</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Privacy Policy</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Terms of Service</a>
+        </div>
+        <div class="flex justify-center gap-6">
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-pinterest text-xl"></i>
+          </a>
+        </div>
+        <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Bookmark functionality
+    document.querySelectorAll('.bookmark-icon').forEach(icon => {
+      icon.addEventListener('click', function() {
+        if(this.classList.contains('far')) {
+          this.classList.remove('far');
+          this.classList.add('fas', 'text-[#f38124]');
+        } else {
+          this.classList.remove('fas', 'text-[#f38124]');
+          this.classList.add('far');
+        }
+      });
+    });
+    
+    // Ingredient checkbox functionality
+    document.querySelectorAll('.ingredient-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        const label = this.nextElementSibling;
+        if(this.checked) {
+          label.classList.add('line-through', 'text-[#9c6f49]');
+        } else {
+          label.classList.remove('line-through', 'text-[#9c6f49]');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
