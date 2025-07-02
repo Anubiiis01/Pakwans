@@ -38,8 +38,8 @@
         display: none;
     }
     .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     .sliding-container {
       display: flex;
@@ -60,13 +60,13 @@
           <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Culinary Canvas</h2>
         </div>
 
-        <button class="md:hidden text-[#1c140d] p-2">
+        <button id="mobile-menu-button" class="md:hidden text-[#1c140d] p-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
 
-        <div class="hidden w-full md:flex md:w-auto md:items-center md:gap-8">
+        <div id="mobile-menu" class="hidden w-full md:flex md:w-auto md:items-center md:gap-8">
           <div class="flex flex-col md:flex-row gap-4 py-4 md:py-0">
             <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Rcp.html">Recipes</a>
             <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Bookmark.html">Bookmarks</a>
@@ -74,9 +74,9 @@
             <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Blog.html">Blogs</a>
           </div>
           <div class="flex items-center gap-2">
-          <a href="login.html" class="flex items-center justify-center h-10 px-4 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-xl whitespace-nowrap min-w-[84px] hover:bg-[#e07015] transition-colors">
-    Subscribe
-</a>
+            <a href="login.html" class="flex items-center justify-center h-10 px-4 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-xl whitespace-nowrap min-w-[84px] hover:bg-[#e07015] transition-colors">
+              Subscribe
+            </a>
             <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5">
               <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
                 <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
@@ -101,8 +101,8 @@
                 </h2>
               </div>
               <a href="Rcp.html" class="flex items-center justify-center h-10 sm:h-12 px-4 sm:px-5 bg-[#f38124] text-[#1c140d] text-sm sm:text-base font-bold rounded-xl min-w-[140px] hover:bg-[#e07015] transition-colors">
-    Explore Recipes
-</a>
+                Explore Recipes
+              </a>
             </div>
           </div>
 
@@ -141,26 +141,26 @@
               <div class="relative overflow-hidden space-y-4">
                   <div class="flex animate-slideLeft">
                       <div class="sliding-container">
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Vibrant Veggie Bowl</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://www.allrecipes.com/thmb/H1mSgOExKFdto3PWLfC9aTgJmlI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11699506-avocado-toast-4x3-ea45b882fb0c454a9ca31647d4fd3c01.jpg");'></div><div class="p-4"><p class="font-bold">Avocado Toast</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1910&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Gourmet Eggs</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Berry Cake</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Vibrant Veggie Bowl</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1484723050470-6b6a3b2b8941?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Avocado Toast</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1910&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Gourmet Eggs</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Berry Cake</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Vibrant Veggie Bowl</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://www.allrecipes.com/thmb/H1mSgOExKFdto3PWLfC9aTgJmlI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11699506-avocado-toast-4x3-ea45b882fb0c454a9ca31647d4fd3c01.jpg");'></div><div class="p-4"><p class="font-bold">Avocado Toast</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1910&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Gourmet Eggs</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Berry Cake</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Vibrant Veggie Bowl</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1484723050470-6b6a3b2b8941?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Avocado Toast</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1910&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Gourmet Eggs</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Berry Cake</p></div></div></div>
                       </div>
                   </div>
                   <div class="flex animate-slideRight">
                       <div class="sliding-container">
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Pasta Primavera</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Fresh Tossed Salad</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Grilled Salmon</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Classic Burger</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Pasta Primavera</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Fresh Tossed Salad</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Grilled Salmon</p></div></div></div>
-                          <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Classic Burger</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Pasta Primavera</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Fresh Tossed Salad</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Grilled Salmon</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Classic Burger</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1473093226795-af9932fe5856?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Pasta Primavera</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Fresh Tossed Salad</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Grilled Salmon</p></div></div></div>
+                        <div class="flex-shrink-0 w-64 p-2"><div class="bg-white rounded-xl overflow-hidden shadow-md"><div class="w-full h-32 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div><div class="p-4"><p class="font-bold">Classic Burger</p></div></div></div>
                       </div>
                   </div>
               </div>
@@ -170,27 +170,27 @@
           <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Trending Recipes</h2>
           <div class="space-y-6 px-4">
             <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md md:flex-row">
-    <div class="w-full md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoHMGb6kDrReUIb2sJHs4ElbN9ZPA4i6szLSeKTJTS7F-bgSdkSqjKxo6KObc67f_OC76Qf__PIz8igzN-cs1QXXUIWdymcj-SvPRfTsqAGlFxCZE6b7yq7aomYdufEx0iYZXYqLKjyGkKmMxJGy7o8tA3ZboefakLyzcNEC_sAr5vDp32QgvswaMK2EfQUs_kYKHmp1Blt7H2F4VZ3dBmITrU07xxntmI4ez8LBy0bMFVy-xE3jAQJPLFz7qO8iRWVz8uF2C77U4");'></div>
-    <div class="p-4 md:p-6 flex-1">
-        <p class="text-lg font-bold leading-tight mb-2">Lemon Herb Roasted Chicken</p>
-        <p class="text-[#9c6f49] mb-3">A classic dish with a zesty twist, perfect for a weeknight dinner.</p>
-        <p class="text-sm text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Chicken, Lemon, Garlic, Rosemary</p>
-        <a href="subrcp.html" class="flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
-            View Recipe
-        </a>
-    </div>
-</div>
-             <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md md:flex-row">
-              <div class="w-full md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover" style='background-image: url("https://thumbs.dreamstime.com/b/spicy-shrimp-tacos-delicious-spicy-shrimp-tacos-shredded-cabbage-queso-fresco-jalapeno-pepper-168814584.jpg");'></div>
+              <div class="w-full md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoHMGb6kDrReUIb2sJHs4ElbN9ZPA4i6szLSeKTJTS7F-bgSdkSqjKxo6KObc67f_OC76Qf__PIz8igzN-cs1QXXUIWdymcj-SvPRfTsqAGlFxCZE6b7yq7aomYdufEx0iYZXYqLKjyGkKmMxJGy7o8tA3ZboefakLyzcNEC_sAr5vDp32QgvswaMK2EfQUs_kYKHmp1Blt7H2F4VZ3dBmITrU07xxntmI4ez8LBy0bMFVy-xE3jAQJPLFz7qO8iRWVz8uF2C77U4");'></div>
               <div class="p-4 md:p-6 flex-1">
-                <p class="text-lg font-bold leading-tight mb-2">Spicy Shrimp Tacos</p>
-                <p class="text-[#9c6f49] mb-3">A fiery and flavorful taco recipe that's sure to be a crowd-pleaser.</p>
-                <p class="text-sm text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Shrimp, Tortillas, Cabbage, Lime, Sriracha</p>
-                <button class="flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
-                  View Recipe
-                </button>
+                  <p class="text-lg font-bold leading-tight mb-2">Lemon Herb Roasted Chicken</p>
+                  <p class="text-[#9c6f49] mb-3">A classic dish with a zesty twist, perfect for a weeknight dinner.</p>
+                  <p class="text-sm text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Chicken, Lemon, Garlic, Rosemary</p>
+                  <a href="subrcp.html" class="flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                      View Recipe
+                  </a>
               </div>
             </div>
+               <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md md:flex-row">
+               <div class="w-full md:w-2/5 bg-center bg-no-repeat aspect-video md:aspect-auto bg-cover" style='background-image: url("https://thumbs.dreamstime.com/b/spicy-shrimp-tacos-delicious-spicy-shrimp-tacos-shredded-cabbage-queso-fresco-jalapeno-pepper-168814584.jpg");'></div>
+               <div class="p-4 md:p-6 flex-1">
+                 <p class="text-lg font-bold leading-tight mb-2">Spicy Shrimp Tacos</p>
+                 <p class="text-[#9c6f49] mb-3">A fiery and flavorful taco recipe that's sure to be a crowd-pleaser.</p>
+                 <p class="text-sm text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Shrimp, Tortillas, Cabbage, Lime, Sriracha</p>
+                 <button class="flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                   View Recipe
+                 </button>
+               </div>
+             </div>
           </div>
 
           <h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 mt-6">Recipe Blog</h2>
@@ -246,12 +246,25 @@
               <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Terms of Service</a>
             </div>
             <div class="flex justify-center gap-6">
-              </div>
+            </div>
             <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function () {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
 </body>
 </html>
