@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+  <title>All Recipes - Culinary Canvas</title>
+  <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: {
+            'xs': '480px',
+          },
+          keyframes: {
+            slideLeft: {
+              '0%': { transform: 'translateX(0)' },
+              '100%': { transform: 'translateX(-100%)' },
+            },
+            slideRight: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(0)' },
+            }
+          },
+          animation: {
+            slideLeft: 'slideLeft 25s linear infinite',
+            slideRight: 'slideRight 25s linear infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .sliding-container {
+      display: flex;
+      width: max-content;
+    }
+  </style>
+</head>
+<body>
+  <div class="relative flex size-full min-h-screen flex-col bg-[#fcfaf8] group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="layout-container flex h-full grow flex-col">
+      <header class="flex flex-wrap items-center justify-between px-4 py-3 border-b border-solid border-b-[#f4ede7] sm:px-6 md:px-10">
+        <div class="flex items-center gap-4 text-[#1c140d]">
+          <div class="size-4">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Culinary Canvas</h2>
+        </div>
+
+        <button id="mobile-menu-button" class="md:hidden text-[#1c140d] p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <div id="mobile-menu" class="hidden w-full md:flex md:w-auto md:items-center md:gap-8">
+          <div class="flex flex-col md:flex-row gap-4 py-4 md:py-0">
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Rcp.html">Recipes</a>
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Bookmark.html">Bookmarks</a>
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Seasonal Sensations</a>
+            <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="Blog.html">Blogs</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <a href="login.html" class="flex items-center justify-center h-10 px-4 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-xl whitespace-nowrap min-w-[84px] hover:bg-[#e07015] transition-colors">
+              Subscribe
+            </a>
+            <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+              </svg>
+              <span class="hidden md:inline ml-2">Search</span>
+            </button>
+            <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4uvdvlsrW0G9kAzK7wgwQoTzc1Ufn1Z3JJ_5Njpkn1zb_9TKMFXdNPns0mWwrY1iFMU7S_Rw7Vg54uXnschOER95vRhRfqy2vaJCJUBxxLOVEjHrjGxrV-oekCDYPfMce4wINSYoVlFD7u-Mepg2tCL_qmGT6H88eTgCQ8kPcSDqNfyvjawD6YpgGO2dEcbTjHxUHVTfdch4OycM0WEhnl6lT5fVglMICE7yeOeFTmKBMet07plx0DG9HJzsklEAP3o4jekRXCn8");'></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="px-4 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
+        <div class="layout-content-container flex flex-col max-w-[960px] flex-1 w-full">
+          <h1 class="text-[28px] sm:text-[32px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">All Recipes</h1>
+          <p class="text-base text-[#9c6f49] px-4 mb-6">Explore our complete collection of delicious recipes.</p>
+
+          <div class="grid gap-6 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="w-full h-40 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoHMGb6kDrReUIb2sJHs4ElbN9ZPA4i6szLSeKTJTS7F-bgSdkSqjKxo6KObc67f_OC76Qf__PIz8igzN-cs1QXXUIWdymcj-SvPRfTsqAGlFxCZE6b7yq7aomYdufEx0iYZXYqLKjyGkKmMxJGy7o8tA3ZboefakLyzcNEC_sAr5vDp32QgvswaMK2EfQUs_kYKHmp1Blt7H2F4VZ3dBmITrU07xxntmI4ez8LBy0bMFVy-xE3jAQJPLFz7qO8iRWVz8uF2C77U4");'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <p class="text-lg font-bold leading-tight mb-2">Lemon Herb Roasted Chicken</p>
+                <p class="text-[#9c6f49] text-sm mb-3">A classic dish with a zesty twist, perfect for a weeknight dinner.</p>
+                <p class="text-xs text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Chicken, Lemon, Garlic, Rosemary</p>
+                <a href="subrcp.html" class="mt-auto flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </a>
+              </div>
+            </div>
+
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="w-full h-40 bg-cover bg-center" style='background-image: url("https://thumbs.dreamstime.com/b/spicy-shrimp-tacos-delicious-spicy-shrimp-tacos-shredded-cabbage-queso-fresco-jalapeno-pepper-168814584.jpg");'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <p class="text-lg font-bold leading-tight mb-2">Spicy Shrimp Tacos</p>
+                <p class="text-[#9c6f49] text-sm mb-3">A fiery and flavorful taco recipe that's sure to be a crowd-pleaser.</p>
+                <p class="text-xs text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Shrimp, Tortillas, Cabbage, Lime, Sriracha</p>
+                <button class="mt-auto flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="w-full h-40 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <p class="text-lg font-bold leading-tight mb-2">Vibrant Veggie Bowl</p>
+                <p class="text-[#9c6f49] text-sm mb-3">A nutritious and colorful bowl packed with fresh vegetables.</p>
+                <p class="text-xs text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Quinoa, Broccoli, Bell Peppers, Chickpeas</p>
+                <button class="mt-auto flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="w-full h-40 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1565958011703-44f9829ba187?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <p class="text-lg font-bold leading-tight mb-2">Decadent Chocolate Lava Cake</p>
+                <p class="text-[#9c6f49] text-sm mb-3">Rich, gooey chocolate cake with a molten center.</p>
+                <p class="text-xs text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Chocolate, Butter, Eggs, Sugar, Flour</p>
+                <button class="mt-auto flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+
+             <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="w-full h-40 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=1980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <p class="text-lg font-bold leading-tight mb-2">Fluffy Pancakes with Berries</p>
+                <p class="text-[#9c6f49] text-sm mb-3">A perfect start to your day with light and airy pancakes.</p>
+                <p class="text-xs text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Flour, Eggs, Milk, Baking Powder, Berries</p>
+                <button class="mt-auto flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="w-full h-40 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <p class="text-lg font-bold leading-tight mb-2">Classic Beef Lasagna</p>
+                <p class="text-[#9c6f49] text-sm mb-3">A comforting Italian classic, perfect for family dinners.</p>
+                <p class="text-xs text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Ground Beef, Lasagna Noodles, Tomato Sauce, Cheese</p>
+                <button class="mt-auto flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="w-full h-40 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <p class="text-lg font-bold leading-tight mb-2">Grilled Chicken Salad</p>
+                <p class="text-[#9c6f49] text-sm mb-3">A light and refreshing salad with lean grilled chicken.</p>
+                <p class="text-xs text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Chicken Breast, Mixed Greens, Cherry Tomatoes, Cucumber</p>
+                <button class="mt-auto flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+
+            <div class="flex flex-col bg-white rounded-xl overflow-hidden shadow-md">
+              <div class="w-full h-40 bg-cover bg-center" style='background-image: url("https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'></div>
+              <div class="p-4 flex-1 flex flex-col">
+                <p class="text-lg font-bold leading-tight mb-2">Mediterranean Quinoa Salad</p>
+                <p class="text-[#9c6f49] text-sm mb-3">A healthy and flavorful salad inspired by Mediterranean cuisine.</p>
+                <p class="text-xs text-[#9c6f49] mb-4"><span class="font-semibold">Ingredients:</span> Quinoa, Cucumber, Tomatoes, Feta Cheese, Olives</p>
+                <button class="mt-auto flex items-center justify-center h-8 px-4 bg-[#f38124] text-[#1c140d] text-sm font-medium rounded-lg hover:bg-[#e07015] transition-colors">
+                  View Recipe
+                </button>
+              </div>
+            </div>
+            </div>
+
+          <div class="flex flex-col items-center px-4 py-10 sm:py-16 bg-[#f4ede7] rounded-xl mx-4 mt-8">
+            <div class="flex flex-col gap-2 text-center max-w-2xl">
+              <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-[-0.015em]">
+                Stay Up-to-Date with Our Latest Recipes
+              </h1>
+              <p class="text-base font-normal leading-normal">
+                Sign up for our newsletter and receive exclusive recipes, cooking tips, and special offers.
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md mt-6">
+              <input placeholder="Your email address" class="flex-1 h-12 px-4 bg-white text-[#1c140d] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f38124] placeholder:text-[#9c6f49]">
+              <button class="flex items-center justify-center h-12 px-6 bg-[#f38124] text-[#1c140d] font-bold rounded-lg whitespace-nowrap hover:bg-[#e07015] transition-colors">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="mt-auto">
+        <div class="max-w-[960px] mx-auto w-full">
+          <div class="flex flex-col gap-6 px-5 py-10 text-center">
+            <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="About.html">About Us</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="Contact.html">Contact</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Privacy Policy</a>
+              <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Terms of Service</a>
+            </div>
+            <div class="flex justify-center gap-6">
+            </div>
+            <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function () {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
