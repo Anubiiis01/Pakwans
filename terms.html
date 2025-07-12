@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms and Conditions - Culinary Canvas</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Plus+Jakarta+Sans:wght@400;500;700;800">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <style>
+    @layer utilities {
+      .category-header {
+        position: relative;
+      }
+      .category-header::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: #f38124;
+        border-radius: 2px;
+      }
+      .terms-section {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+      }
+      .terms-section:hover {
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      }
+      .terms-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+      }
+      .terms-content.active {
+        max-height: 1000px;
+      }
+      .highlight-box {
+        background-color: #fef7f0;
+        border-left: 4px solid #f38124;
+        padding: 20px;
+        border-radius: 0 8px 8px 0;
+        margin: 20px 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#fcfaf8]" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+  <!-- Header -->
+  <header class="flex flex-wrap items-center justify-between px-4 py-3 border-b border-solid border-b-[#f4ede7] sm:px-6 md:px-10">
+    <div class="flex items-center gap-4 text-[#1c140d]" href="Sample.html">
+      <div class="size-4">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+        </svg>
+      </div>
+      <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Culinary Canvas</h2>
+    </div>
+    
+    <!-- Desktop Navigation -->
+    <div class="hidden w-full md:flex md:w-auto md:items-center md:gap-8">
+      <div class="flex flex-col md:flex-row gap-4 py-4 md:py-0">
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Recipes</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Learn/How-to</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Seasonal Sensations</a>
+        <a class="text-sm md:text-base font-medium leading-normal hover:text-[#f38124] transition-colors" href="#">Shop</a>
+      </div>
+      <div class="flex items-center gap-2 md:gap-4">
+       <a href="login.html" class="flex items-center justify-center h-10 px-4 bg-[#f38124] text-[#1c140d] text-sm font-bold rounded-xl whitespace-nowrap min-w-[84px] hover:bg-[#e07015] transition-colors">
+          Subscribe
+        </a>
+        <button class="flex items-center justify-center h-10 w-10 md:w-auto bg-[#f4ede7] text-[#1c140d] rounded-xl px-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+          </svg>
+          <span class="hidden md:inline ml-2">Search</span>
+        </button>
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4uvdvlsrW0G9kAzK7wgwQoTzc1Ufn1Z3JJ_5Njpkn1zb_9TKMFXdNPns0mWwrY1iFMU7S_Rw7Vg54uXnschOER95vRhRfqy2vaJCJUBxxLOVEjHrjGxrV-oekCDYPfMce4wINSYoVlFD7u-Mepg2tCL_qmGT6H88eTgCQ8kPcSDqNfyvjawD6YpgGO2dEcbTjHxUHVTfdch4OycM0WEhnl6lT5fVglMICE7yeOeFTmKBMet07plx0DG9HJzsklEAP3o4jekRXCn8");'></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="px-4 md:px-10 lg:px-20 xl:px-40 py-8">
+    <div class="max-w-[960px] mx-auto">
+      <div class="flex flex-col items-center mb-12 text-center">
+        <div class="inline-flex items-center justify-center bg-[#f4ede7] rounded-full w-16 h-16 mb-4">
+          <i class="fas fa-file-contract text-[#f38124] text-2xl"></i>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-[#1c140d] mb-4">Terms and Conditions</h1>
+        <p class="text-[#9c6f49] max-w-2xl">Last updated: June 25, 2025</p>
+      </div>
+      
+      <!-- Introduction -->
+      <div class="bg-white rounded-2xl p-6 mb-8 shadow-md">
+        <p class="text-[#1c140d] mb-4">
+          Welcome to Culinary Canvas! These Terms and Conditions govern your use of our website and services. 
+          By accessing or using CulinaryCanvas.com, you agree to be bound by these terms. If you disagree with 
+          any part of these terms, please do not use our website.
+        </p>
+        <div class="highlight-box">
+          <p class="text-[#1c140d] font-medium">
+            <i class="fas fa-info-circle text-[#f38124] mr-2"></i>
+            Our platform connects food enthusiasts with recipes and cooking resources. By using our services, 
+            you agree to these terms and our Privacy Policy.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Acceptance of Terms Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section1-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">1. Acceptance of Terms</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section1-content">
+          <p class="text-[#1c140d] mb-4">
+            By accessing or using Culinary Canvas, you confirm that you have read, understood, 
+            and agree to be bound by these Terms and Conditions. These terms apply to all visitors, 
+            users, and others who access or use the Service.
+          </p>
+          <ul class="list-disc pl-5 text-[#9c6f49] space-y-2">
+            <li>You must be at least 13 years old to use our services</li>
+            <li>If you are using the site on behalf of an organization, you represent that you have authority to bind that organization</li>
+            <li>We may modify these terms at any time, and your continued use constitutes acceptance</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- User Accounts Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section2-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">2. User Accounts</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section2-content">
+          <p class="text-[#1c140d] mb-4">
+            To access certain features of Culinary Canvas, you may be required to create an account.
+          </p>
+          
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3">a. Account Creation</h3>
+            <p class="text-[#9c6f49]">
+              When creating an account, you agree to:
+            </p>
+            <ul class="list-disc pl-5 text-[#9c6f49] space-y-2 mt-2">
+              <li>Provide accurate and complete information</li>
+              <li>Maintain the security of your password</li>
+              <li>Accept responsibility for all activities under your account</li>
+            </ul>
+          </div>
+          
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3">b. Account Termination</h3>
+            <p class="text-[#9c6f49]">
+              We reserve the right to suspend or terminate accounts that:
+            </p>
+            <ul class="list-disc pl-5 text-[#9c6f49] space-y-2 mt-2">
+              <li>Violate these terms or our policies</li>
+              <li>Engage in fraudulent, illegal, or harmful activities</li>
+              <li>Remain inactive for an extended period</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Recipe Submission Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section3-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">3. Recipe Submission</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section3-content">
+          <p class="text-[#1c140d] mb-4">
+            We encourage users to submit their own recipes to share with our community.
+          </p>
+          
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3">a. Ownership and Licensing</h3>
+            <p class="text-[#9c6f49]">
+              By submitting a recipe to Culinary Canvas:
+            </p>
+            <ul class="list-disc pl-5 text-[#9c6f49] space-y-2 mt-2">
+              <li>You retain ownership of your original content</li>
+              <li>You grant Culinary Canvas a worldwide, non-exclusive, royalty-free license to use, display, and distribute your recipe</li>
+              <li>You warrant that you have all necessary rights to submit the recipe</li>
+            </ul>
+          </div>
+          
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3">b. Content Guidelines</h3>
+            <p class="text-[#9c6f49]">
+              Recipes must not:
+            </p>
+            <ul class="list-disc pl-5 text-[#9c6f49] space-y-2 mt-2">
+              <li>Contain hate speech, harassment, or discriminatory content</li>
+              <li>Promote unsafe food practices</li>
+              <li>Violate any third-party rights (copyrights, trademarks, etc.)</li>
+              <li>Contain commercial advertisements or promotions</li>
+            </ul>
+          </div>
+          
+          <div class="highlight-box">
+            <p class="text-[#1c140d] font-medium">
+              <i class="fas fa-lightbulb text-[#f38124] mr-2"></i>
+              We reserve the right to edit, reject, or remove any submitted recipe at our discretion.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Intellectual Property Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section4-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">4. Intellectual Property</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section4-content">
+          <p class="text-[#1c140d] mb-4">
+            All content on Culinary Canvas is protected by intellectual property laws.
+          </p>
+          
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3">a. Our Content</h3>
+            <p class="text-[#9c6f49]">
+              All visual elements, design, text, graphics, and arrangement of Culinary Canvas are owned by or licensed to us and are protected by copyright and trademark laws.
+            </p>
+          </div>
+          
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3">b. User License</h3>
+            <p class="text-[#9c6f49]">
+              We grant you a limited, non-exclusive, non-transferable license to:
+            </p>
+            <ul class="list-disc pl-5 text-[#9c6f49] space-y-2 mt-2">
+              <li>Access and use Culinary Canvas for personal, non-commercial purposes</li>
+              <li>Print recipes for personal use</li>
+              <li>Share recipes via social media with proper attribution</li>
+            </ul>
+          </div>
+          
+          <div class="ml-4">
+            <h3 class="font-bold text-[#1c140d] mb-3">c. Restrictions</h3>
+            <p class="text-[#9c6f49]">
+              You may not:
+            </p>
+            <ul class="list-disc pl-5 text-[#9c6f49] space-y-2 mt-2">
+              <li>Republish content without permission</li>
+              <li>Sell, rent, or sub-license material from Culinary Canvas</li>
+              <li>Reproduce, duplicate, or copy content for commercial purposes</li>
+              <li>Redistribute content from Culinary Canvas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- User Responsibilities Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section5-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">5. User Responsibilities</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section5-content">
+          <p class="text-[#1c140d] mb-4">
+            When using Culinary Canvas, you agree to:
+          </p>
+          <ul class="list-disc pl-5 text-[#9c6f49] space-y-3">
+            <li>Use recipes and cooking instructions at your own risk</li>
+            <li>Check for food allergies before using any recipe</li>
+            <li>Comply with all applicable laws and regulations</li>
+            <li>Respect other users in comments and forums</li>
+            <li>Not use our services for any unlawful purpose</li>
+          </ul>
+          
+          <div class="highlight-box mt-6">
+            <p class="text-[#1c140d] font-medium">
+              <i class="fas fa-exclamation-triangle text-[#f38124] mr-2"></i>
+              We are not responsible for any adverse reactions, health issues, or damages resulting from the use of recipes or cooking instructions on our site.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Third-Party Content Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section6-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">6. Third-Party Content</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section6-content">
+          <p class="text-[#1c140d] mb-4">
+            Culinary Canvas may contain links to third-party websites, advertisements, or services.
+          </p>
+          
+          <div class="ml-4 mb-6">
+            <h3 class="font-bold text-[#1c140d] mb-3">a. External Links</h3>
+            <p class="text-[#9c6f49]">
+              We have no control over and assume no responsibility for the content, privacy policies, 
+              or practices of any third-party sites or services.
+            </p>
+          </div>
+          
+          <div class="ml-4">
+            <h3 class="font-bold text-[#1c140d] mb-3">b. Advertisements</h3>
+            <p class="text-[#9c6f49]">
+              We may display advertisements from third parties. Your interactions with advertisers 
+              are solely between you and the advertiser.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Disclaimers Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section7-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">7. Disclaimers</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section7-content">
+          <p class="text-[#1c140d] mb-4">
+            Culinary Canvas is provided on an "as is" and "as available" basis.
+          </p>
+          
+          <ul class="list-disc pl-5 text-[#9c6f49] space-y-3">
+            <li>We make no warranties about the accuracy, reliability, or completeness of recipe information</li>
+            <li>We are not responsible for any health issues resulting from recipe use</li>
+            <li>Nutritional information is provided as estimates only</li>
+            <li>We do not guarantee that our service will be uninterrupted or error-free</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Limitation of Liability Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section8-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">8. Limitation of Liability</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section8-content">
+          <p class="text-[#1c140d]">
+            To the maximum extent permitted by law, Culinary Canvas shall not be liable for any indirect, 
+            incidental, special, consequential, or punitive damages, or any loss of profits or revenues, 
+            whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible 
+            losses, resulting from:
+          </p>
+          <ul class="list-disc pl-5 text-[#9c6f49] space-y-2 mt-4">
+            <li>Your use or inability to use our services</li>
+            <li>Any conduct or content of any third party on the service</li>
+            <li>Any content obtained from the service</li>
+            <li>Unauthorized access, use, or alteration of your transmissions or content</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Governing Law Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section9-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">9. Governing Law</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section9-content">
+          <p class="text-[#1c140d]">
+            These Terms shall be governed and construed in accordance with the laws of the State of California, 
+            United States, without regard to its conflict of law provisions.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Changes to Terms Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section10-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">10. Changes to Terms</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section10-content">
+          <p class="text-[#1c140d]">
+            We reserve the right, at our sole discretion, to modify or replace these Terms at any time. 
+            We will provide at least 30 days' notice before any new terms take effect. By continuing to 
+            access or use our Service after those revisions become effective, you agree to be bound by 
+            the revised terms.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Contact Us Section -->
+      <div class="terms-section p-6 mb-8">
+        <div class="flex items-start justify-between cursor-pointer" id="section11-toggle">
+          <h2 class="text-xl md:text-2xl font-bold text-[#1c140d] category-header">11. Contact Us</h2>
+          <i class="fas fa-chevron-down text-[#9c6f49] mt-2 transition-transform duration-300"></i>
+        </div>
+        <div class="terms-content mt-6" id="section11-content">
+          <p class="text-[#1c140d] mb-4">
+            If you have any questions about these Terms and Conditions, please contact us:
+          </p>
+          <ul class="text-[#9c6f49] space-y-2">
+            <li>Email: <a href="mailto:legal@culinarycanvas.com" class="text-[#f38124] hover:underline">legal@culinarycanvas.com</a></li>
+            <li>Address: Culinary Canvas, 123 Gourmet Street, Culinary City, CC 10001</li>
+            <li>Phone: +1 (555) 123-4567</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Acceptance Section -->
+      <div class="bg-white rounded-2xl p-6 text-center mb-12 shadow-md">
+        <h3 class="text-xl font-bold text-[#1c140d] mb-4">Your Acceptance of These Terms</h3>
+        <p class="text-[#9c6f49]">
+          By using Culinary Canvas, you signify your acceptance of these Terms and Conditions. 
+          If you do not agree to these terms, please do not use our website.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-auto">
+    <div class="max-w-[960px] mx-auto w-full">
+      <div class="flex flex-col gap-6 px-5 py-10 text-center">
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-8">
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="About.html">About Us</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="#">Contact</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="privacy.html">Privacy Policy</a>
+          <a class="text-[#9c6f49] text-base font-normal hover:text-[#f38124] transition-colors" href="terms.html">Terms of Service</a>
+        </div>
+        <div class="flex justify-center gap-6">
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-instagram text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+          <a href="#" class="text-[#9c6f49] hover:text-[#f38124] transition-colors">
+            <i class="fab fa-pinterest text-xl"></i>
+          </a>
+        </div>
+        <p class="text-[#9c6f49] text-base font-normal leading-normal">© 2023 Culinary Canvas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Accordion functionality for terms sections
+    document.querySelectorAll('[id$="-toggle"]').forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const contentId = this.id.replace('-toggle', '-content');
+        const content = document.getElementById(contentId);
+        const icon = this.querySelector('i');
+        
+        // Toggle active class
+        content.classList.toggle('active');
+        
+        // Rotate icon
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+      });
+    });
+    
+    // Open first section by default
+    document.getElementById('section1-content').classList.add('active');
+    document.querySelector('#section1-toggle i').classList.remove('fa-chevron-down');
+    document.querySelector('#section1-toggle i').classList.add('fa-chevron-up');
+  </script>
+</body>
+</html>
